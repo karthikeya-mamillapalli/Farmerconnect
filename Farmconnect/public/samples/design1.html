@@ -1,0 +1,2433 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FarmDirect — Design 1: Fresh Green</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <style>
+      :root {
+        --primary: #2d7a3a;
+        --primary-dark: #1e5628;
+        --primary-light: #e8f5ea;
+        --accent: #f4a024;
+        --accent-light: #fff8ec;
+        --success: #27ae60;
+        --warning: #f39c12;
+        --danger: #e74c3c;
+        --info: #2980b9;
+        --neutral-50: #fafafa;
+        --neutral-100: #f5f5f5;
+        --neutral-200: #e5e5e5;
+        --neutral-300: #d4d4d4;
+        --neutral-600: #525252;
+        --neutral-800: #262626;
+        --neutral-900: #171717;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        color: var(--neutral-800);
+        background: #fff;
+      }
+      h1,
+      h2,
+      h3,
+      .brand-font {
+        font-family: 'Playfair Display', serif;
+      }
+
+      /* ---- NAVBAR ---- */
+      .navbar-custom {
+        background: #fff;
+        box-shadow: 0 1px 0 var(--neutral-200);
+        padding: 12px 0;
+      }
+      .navbar-brand-text {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        color: var(--primary);
+        font-weight: 800;
+      }
+      .navbar-brand-text span {
+        color: var(--accent);
+      }
+      .nav-link-custom {
+        color: var(--neutral-600) !important;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: color 0.2s;
+      }
+      .nav-link-custom:hover {
+        color: var(--primary) !important;
+      }
+      .btn-primary-custom {
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 20px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        transition:
+          background 0.2s,
+          transform 0.15s;
+      }
+      .btn-primary-custom:hover {
+        background: var(--primary-dark);
+        color: #fff;
+        transform: translateY(-1px);
+      }
+      .btn-accent {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 28px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        transition: all 0.2s;
+      }
+      .btn-accent:hover {
+        background: #d4861a;
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(244, 160, 36, 0.35);
+      }
+      .btn-outline-primary-custom {
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        background: transparent;
+        border-radius: 8px;
+        padding: 8px 20px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+      }
+      .btn-outline-primary-custom:hover {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      /* ---- HERO ---- */
+      .hero-section {
+        background: linear-gradient(135deg, #f0faf1 0%, #e8f5ea 50%, #fefce8 100%);
+        padding: 80px 0 60px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-section::before {
+        content: '';
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(45, 122, 58, 0.08) 0%, transparent 70%);
+        border-radius: 50%;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--primary-light);
+        color: var(--primary);
+        border-radius: 20px;
+        padding: 6px 14px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        border: 1px solid rgba(45, 122, 58, 0.2);
+      }
+      .hero-title {
+        font-size: clamp(2.2rem, 5vw, 3.5rem);
+        line-height: 1.15;
+        color: var(--neutral-900);
+        margin-bottom: 20px;
+      }
+      .hero-title .highlight {
+        color: var(--primary);
+      }
+      .hero-subtitle {
+        font-size: 1.05rem;
+        color: var(--neutral-600);
+        line-height: 1.7;
+        max-width: 520px;
+        margin-bottom: 36px;
+      }
+      .hero-stats {
+        display: flex;
+        gap: 32px;
+        margin-top: 40px;
+      }
+      .hero-stat-num {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--primary);
+      }
+      .hero-stat-label {
+        font-size: 0.8rem;
+        color: var(--neutral-600);
+      }
+      .hero-image-card {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        position: relative;
+      }
+      .hero-img {
+        width: 100%;
+        height: 380px;
+        object-fit: cover;
+        background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero-img-placeholder {
+        width: 100%;
+        height: 380px;
+        background: linear-gradient(135deg, #2d7a3a 0%, #4caf50 50%, #81c784 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .floating-card {
+        position: absolute;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        padding: 12px 16px;
+      }
+      .floating-card-1 {
+        bottom: 24px;
+        left: -20px;
+      }
+      .floating-card-2 {
+        top: 24px;
+        right: -20px;
+      }
+
+      /* ---- SEARCH BAR ---- */
+      .search-section {
+        background: #fff;
+        padding: 0;
+        margin-top: -28px;
+        position: relative;
+        z-index: 10;
+      }
+      .search-bar-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+        padding: 28px 32px;
+      }
+      .search-input-group {
+        position: relative;
+      }
+      .search-input {
+        border: 2px solid var(--neutral-200);
+        border-radius: 12px;
+        padding: 14px 20px 14px 48px;
+        font-size: 1rem;
+        width: 100%;
+        transition: border-color 0.2s;
+        background: var(--neutral-50);
+      }
+      .search-input:focus {
+        outline: none;
+        border-color: var(--primary);
+        background: #fff;
+        box-shadow: 0 0 0 4px rgba(45, 122, 58, 0.1);
+      }
+      .search-icon {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--neutral-300);
+        font-size: 1.2rem;
+      }
+      .search-btn {
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        padding: 14px 32px;
+        font-weight: 700;
+        font-size: 1rem;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+      .search-btn:hover {
+        background: var(--primary-dark);
+        transform: translateY(-1px);
+      }
+      .filter-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--neutral-100);
+        border: 1px solid var(--neutral-200);
+        border-radius: 20px;
+        padding: 6px 14px;
+        font-size: 0.82rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+        color: var(--neutral-600);
+      }
+      .filter-chip:hover,
+      .filter-chip.active {
+        background: var(--primary-light);
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+
+      /* ---- CATEGORIES ---- */
+      .section-label {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+      .section-title {
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        color: var(--neutral-900);
+        margin-top: 8px;
+      }
+      .category-card {
+        background: #fff;
+        border-radius: 16px;
+        border: 1.5px solid var(--neutral-200);
+        padding: 24px 16px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.25s;
+      }
+      .category-card:hover {
+        border-color: var(--primary);
+        box-shadow: 0 8px 24px rgba(45, 122, 58, 0.12);
+        transform: translateY(-4px);
+      }
+      .category-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+        background: var(--primary-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+        font-size: 1.8rem;
+        transition: all 0.25s;
+      }
+      .category-card:hover .category-icon {
+        background: var(--primary);
+      }
+      .category-name {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--neutral-800);
+      }
+      .category-count {
+        font-size: 0.78rem;
+        color: var(--neutral-600);
+        margin-top: 4px;
+      }
+
+      /* ---- PRODUCT CARD ---- */
+      .product-card {
+        background: #fff;
+        border-radius: 16px;
+        border: 1.5px solid var(--neutral-200);
+        overflow: hidden;
+        transition: all 0.25s;
+        height: 100%;
+      }
+      .product-card:hover {
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+        transform: translateY(-4px);
+        border-color: var(--neutral-300);
+      }
+      .product-img {
+        height: 200px;
+        background: linear-gradient(135deg, #e8f5ea, #c8e6c9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.5rem;
+        position: relative;
+      }
+      .product-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: var(--success);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 20px;
+      }
+      .product-body {
+        padding: 18px;
+      }
+      .product-category {
+        font-size: 0.75rem;
+        color: var(--primary);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .product-name {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--neutral-900);
+        margin: 4px 0 6px;
+      }
+      .product-farmer {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.8rem;
+        color: var(--neutral-600);
+        margin-bottom: 12px;
+      }
+      .farmer-avatar {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--primary-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        color: var(--primary);
+        font-weight: 700;
+      }
+      .product-price {
+        font-size: 1.2rem;
+        font-weight: 800;
+        color: var(--primary);
+      }
+      .product-unit {
+        font-size: 0.8rem;
+        color: var(--neutral-600);
+        font-weight: 400;
+      }
+      .product-location {
+        font-size: 0.78rem;
+        color: var(--neutral-600);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .btn-cart {
+        background: var(--primary-light);
+        color: var(--primary);
+        border: 1.5px solid var(--primary);
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: all 0.2s;
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+      }
+      .btn-cart:hover {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      /* ---- FARMER CARD ---- */
+      .farmer-card {
+        background: #fff;
+        border-radius: 20px;
+        border: 1.5px solid var(--neutral-200);
+        padding: 28px;
+        text-align: center;
+        transition: all 0.25s;
+      }
+      .farmer-card:hover {
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+        transform: translateY(-4px);
+      }
+      .farmer-avatar-lg {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), #4caf50);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        color: #fff;
+        font-weight: 700;
+        margin: 0 auto 16px;
+        box-shadow: 0 4px 16px rgba(45, 122, 58, 0.3);
+      }
+      .farmer-name {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--neutral-900);
+        margin-bottom: 4px;
+      }
+      .farmer-location {
+        font-size: 0.82rem;
+        color: var(--neutral-600);
+        margin-bottom: 12px;
+      }
+      .farmer-tag {
+        display: inline-block;
+        background: var(--primary-light);
+        color: var(--primary);
+        border-radius: 12px;
+        padding: 3px 10px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin: 2px;
+      }
+      .farmer-rating {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--warning);
+      }
+
+      /* ---- HOW IT WORKS ---- */
+      .how-section {
+        background: var(--neutral-50);
+      }
+      .step-card {
+        position: relative;
+        text-align: center;
+        padding: 32px 20px;
+      }
+      .step-number {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        font-weight: 800;
+        margin: 0 auto 20px;
+        box-shadow: 0 4px 16px rgba(45, 122, 58, 0.3);
+      }
+      .step-icon {
+        font-size: 2rem;
+        margin-bottom: 16px;
+      }
+      .step-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--neutral-900);
+        margin-bottom: 8px;
+      }
+      .step-desc {
+        font-size: 0.875rem;
+        color: var(--neutral-600);
+        line-height: 1.6;
+      }
+      .step-connector {
+        position: absolute;
+        top: 52px;
+        right: -50%;
+        width: 100%;
+        height: 2px;
+        background: repeating-linear-gradient(
+          90deg,
+          var(--primary) 0,
+          var(--primary) 8px,
+          transparent 8px,
+          transparent 16px
+        );
+        z-index: 0;
+      }
+
+      /* ---- DASHBOARD PREVIEW ---- */
+      .dashboard-section {
+        background: var(--neutral-900);
+        color: #fff;
+        padding: 80px 0;
+      }
+      .dashboard-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 24px;
+        backdrop-filter: blur(10px);
+      }
+      .dashboard-metric {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #fff;
+      }
+      .dashboard-metric-label {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 4px;
+      }
+      .dashboard-metric-change {
+        font-size: 0.8rem;
+        color: #4caf50;
+        font-weight: 600;
+      }
+      .order-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .order-row:last-child {
+        border-bottom: none;
+      }
+      .status-pill {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+      .status-pending {
+        background: rgba(244, 160, 36, 0.2);
+        color: var(--accent);
+      }
+      .status-delivered {
+        background: rgba(76, 175, 80, 0.2);
+        color: #4caf50;
+      }
+      .status-processing {
+        background: rgba(41, 128, 185, 0.2);
+        color: #5dade2;
+      }
+
+      /* ---- PORTAL SCREENS ---- */
+      .portal-nav {
+        background: var(--primary-dark);
+        color: #fff;
+        padding: 12px 0;
+      }
+      .portal-nav-link {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: color 0.2s;
+        padding: 6px 14px;
+        border-radius: 8px;
+      }
+      .portal-nav-link:hover,
+      .portal-nav-link.active {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .portal-sidebar {
+        background: var(--neutral-50);
+        border-right: 1px solid var(--neutral-200);
+        min-height: 500px;
+        padding: 24px 16px;
+      }
+      .sidebar-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--neutral-600);
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-bottom: 4px;
+      }
+      .sidebar-item:hover,
+      .sidebar-item.active {
+        background: var(--primary-light);
+        color: var(--primary);
+      }
+      .sidebar-item i {
+        font-size: 1rem;
+      }
+      .table-custom thead th {
+        background: var(--neutral-50);
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--neutral-600);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid var(--neutral-200);
+        padding: 12px 16px;
+      }
+      .table-custom tbody td {
+        font-size: 0.875rem;
+        color: var(--neutral-800);
+        padding: 14px 16px;
+        vertical-align: middle;
+        border-bottom: 1px solid var(--neutral-100);
+      }
+      .table-custom tbody tr:hover {
+        background: var(--neutral-50);
+      }
+
+      /* ---- FOOTER ---- */
+      .footer {
+        background: var(--neutral-900);
+        color: rgba(255, 255, 255, 0.75);
+        padding: 60px 0 32px;
+      }
+      .footer-brand {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.6rem;
+        color: #fff;
+        font-weight: 800;
+      }
+      .footer-brand span {
+        color: var(--accent);
+      }
+      .footer-desc {
+        font-size: 0.875rem;
+        line-height: 1.7;
+        max-width: 280px;
+        margin-top: 12px;
+      }
+      .footer-heading {
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 16px;
+      }
+      .footer-link {
+        display: block;
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 0.875rem;
+        margin-bottom: 10px;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-link:hover {
+        color: #fff;
+      }
+      .footer-divider {
+        border-color: rgba(255, 255, 255, 0.1);
+        margin: 40px 0 24px;
+      }
+      .footer-bottom {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      /* ---- ROLE TABS ---- */
+      .role-tab {
+        padding: 10px 24px;
+        border-radius: 10px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: 1.5px solid var(--neutral-200);
+        color: var(--neutral-600);
+        background: #fff;
+      }
+      .role-tab:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+      .role-tab.active {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+      }
+
+      /* ---- TESTIMONIAL ---- */
+      .testimonial-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 32px;
+        border: 1.5px solid var(--neutral-200);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        transition: all 0.25s;
+      }
+      .testimonial-card:hover {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+      }
+      .testimonial-quote {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--neutral-600);
+        font-style: italic;
+        margin-bottom: 20px;
+      }
+      .testimonial-author {
+        font-weight: 700;
+        color: var(--neutral-900);
+        font-size: 0.9rem;
+      }
+      .testimonial-role {
+        font-size: 0.8rem;
+        color: var(--primary);
+        font-weight: 500;
+      }
+
+      /* ---- RESPONSIVE ---- */
+      @media (max-width: 768px) {
+        .hero-stats {
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+        .floating-card-1,
+        .floating-card-2 {
+          display: none;
+        }
+        .portal-sidebar {
+          min-height: auto;
+        }
+      }
+
+      /* ---- MISC ---- */
+      .section-pad {
+        padding: 80px 0;
+      }
+      .divider-dot {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background: var(--primary);
+        border-radius: 50%;
+      }
+      .bg-primary-light {
+        background: var(--primary-light);
+      }
+      .text-primary-custom {
+        color: var(--primary);
+      }
+      .badge-role {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+      .badge-admin {
+        background: rgba(231, 76, 60, 0.1);
+        color: var(--danger);
+      }
+      .badge-farmer {
+        background: rgba(45, 122, 58, 0.1);
+        color: var(--primary);
+      }
+      .badge-customer {
+        background: rgba(41, 128, 185, 0.1);
+        color: var(--info);
+      }
+      .input-custom {
+        border: 1.5px solid var(--neutral-200);
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 0.9rem;
+        width: 100%;
+        transition: border-color 0.2s;
+      }
+      .input-custom:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(45, 122, 58, 0.1);
+      }
+      label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--neutral-700);
+        margin-bottom: 6px;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ======== NAVBAR ======== -->
+    <nav class="navbar navbar-custom navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <span class="navbar-brand-text">Farm<span>Direct</span></span>
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMain"
+        >
+          <i class="bi bi-list fs-4" style="color: var(--primary)"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navMain">
+          <ul class="navbar-nav mx-auto gap-1">
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="#">Products</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="#">Farmers</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="#">Categories</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="#">About</a></li>
+          </ul>
+          <div class="d-flex align-items-center gap-3">
+            <span class="badge-role badge-farmer"
+              ><i class="bi bi-person-circle"></i> Farmer Portal</span
+            >
+            <a
+              href="#"
+              class="btn-outline-primary-custom text-decoration-none d-none d-lg-inline-block"
+              >Login</a
+            >
+            <a href="#" class="btn-primary-custom text-decoration-none">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ======== HERO ======== -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <div class="hero-badge">
+              <i class="bi bi-patch-check-fill"></i> Trusted Farm-to-Table Platform
+            </div>
+            <h1 class="hero-title">
+              Fresh From <span class="highlight">Farm</span><br />Directly to
+              <span class="highlight">Your Table</span>
+            </h1>
+            <p class="hero-subtitle">
+              Connect directly with local farmers. Buy fresh vegetables, fruits, and grains at fair
+              prices — no middlemen, just honest food from honest people.
+            </p>
+            <div class="d-flex flex-wrap gap-3">
+              <a href="#" class="btn-accent text-decoration-none">
+                <i class="bi bi-search me-2"></i>Shop Fresh Produce
+              </a>
+              <a href="#" class="btn-outline-primary-custom text-decoration-none">
+                <i class="bi bi-person-plus me-2"></i>Register as Farmer
+              </a>
+            </div>
+            <div class="hero-stats">
+              <div>
+                <div class="hero-stat-num">1,200+</div>
+                <div class="hero-stat-label">Active Farmers</div>
+              </div>
+              <div>
+                <div class="hero-stat-num">8,500+</div>
+                <div class="hero-stat-label">Happy Customers</div>
+              </div>
+              <div>
+                <div class="hero-stat-num">320+</div>
+                <div class="hero-stat-label">Products Listed</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="hero-image-card position-relative">
+              <div class="hero-img-placeholder" style="min-height: 380px">
+                <img
+                  src="https://images.pexels.com/photos/1459339/pexels-photo-1459339.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  alt="Farm produce"
+                  style="width: 100%; height: 380px; object-fit: cover"
+                />
+              </div>
+              <div class="floating-card floating-card-1">
+                <div class="d-flex align-items-center gap-10">
+                  <div
+                    style="
+                      background: var(--primary-light);
+                      border-radius: 10px;
+                      padding: 8px;
+                      margin-right: 10px;
+                    "
+                  >
+                    <i class="bi bi-check-circle-fill text-primary-custom fs-5"></i>
+                  </div>
+                  <div>
+                    <div style="font-size: 0.85rem; font-weight: 700">Order Delivered!</div>
+                    <div style="font-size: 0.75rem; color: var(--neutral-600)">
+                      2 kg Potato · Raju Farm
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="floating-card floating-card-2">
+                <div style="font-size: 0.75rem; color: var(--neutral-600); margin-bottom: 4px">
+                  Today's Harvest
+                </div>
+                <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary)">
+                  🥬 Spinach — 48 kg available
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== SEARCH BAR ======== -->
+    <section class="search-section py-0">
+      <div class="container">
+        <div class="search-bar-card">
+          <div class="row g-3 align-items-end">
+            <div class="col-md-5">
+              <label>Search Products</label>
+              <div class="search-input-group">
+                <i class="bi bi-search search-icon"></i>
+                <input
+                  type="text"
+                  class="search-input"
+                  placeholder="e.g. potato, tomato, wheat..."
+                />
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label>Category</label>
+              <select class="input-custom">
+                <option>All Categories</option>
+                <option>Vegetables</option>
+                <option>Fruits</option>
+                <option>Grains & Cereals</option>
+                <option>Spices & Herbs</option>
+                <option>Dairy</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <label>Location</label>
+              <select class="input-custom">
+                <option>All Areas</option>
+                <option>Punjab</option>
+                <option>Maharashtra</option>
+                <option>UP</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <button class="search-btn w-100"><i class="bi bi-search me-2"></i>Search</button>
+            </div>
+          </div>
+          <div class="d-flex flex-wrap gap-2 mt-16" style="margin-top: 16px">
+            <span style="font-size: 0.8rem; color: var(--neutral-600); padding-top: 2px"
+              >Popular:</span
+            >
+            <span class="filter-chip active">🥔 Potato</span>
+            <span class="filter-chip">🍅 Tomato</span>
+            <span class="filter-chip">🌾 Wheat</span>
+            <span class="filter-chip">🧅 Onion</span>
+            <span class="filter-chip">🌿 Spinach</span>
+            <span class="filter-chip">🌽 Corn</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== CATEGORIES ======== -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-label">Browse by Type</div>
+          <h2 class="section-title">Shop by Category</h2>
+        </div>
+        <div class="row g-3">
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="category-card">
+              <div class="category-icon">🥦</div>
+              <div class="category-name">Vegetables</div>
+              <div class="category-count">128 products</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="category-card">
+              <div class="category-icon">🍎</div>
+              <div class="category-name">Fruits</div>
+              <div class="category-count">84 products</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="category-card">
+              <div class="category-icon">🌾</div>
+              <div class="category-name">Grains</div>
+              <div class="category-count">56 products</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="category-card">
+              <div class="category-icon">🌿</div>
+              <div class="category-name">Herbs</div>
+              <div class="category-count">42 products</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="category-card">
+              <div class="category-icon">🥛</div>
+              <div class="category-name">Dairy</div>
+              <div class="category-count">30 products</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="category-card">
+              <div class="category-icon">🌶️</div>
+              <div class="category-name">Spices</div>
+              <div class="category-count">38 products</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== PRODUCT LISTING ======== -->
+    <section class="section-pad pt-0">
+      <div class="container">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+          <div>
+            <div class="section-label">Search Results</div>
+            <h2 class="section-title mb-0">Farmers Selling Potato</h2>
+          </div>
+          <div class="d-flex gap-2 align-items-center">
+            <span style="font-size: 0.85rem; color: var(--neutral-600)">Sort by:</span>
+            <select class="input-custom" style="width: auto; padding: 8px 14px">
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Nearest First</option>
+              <option>Rating</option>
+            </select>
+          </div>
+        </div>
+        <div class="row g-4">
+          <!-- Product 1 -->
+          <div class="col-sm-6 col-lg-3">
+            <div class="product-card">
+              <div class="product-img">
+                <img
+                  src="https://images.pexels.com/photos/144248/potatoes-vegetables-erdfrucht-bio-144248.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  alt="Potato"
+                  style="width: 100%; height: 200px; object-fit: cover"
+                />
+                <span class="product-badge">Fresh</span>
+              </div>
+              <div class="product-body">
+                <div class="product-category">Vegetables</div>
+                <div class="product-name">Desi Potato (Aloo)</div>
+                <div class="product-farmer">
+                  <div class="farmer-avatar">RK</div>
+                  <span>Raju Kumar · Punjab</span>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mb-12">
+                  <div>
+                    <span class="product-price">₹24</span>
+                    <span class="product-unit">/kg</span>
+                  </div>
+                  <div class="product-location">
+                    <i class="bi bi-geo-alt-fill" style="color: var(--accent)"></i> 12 km
+                  </div>
+                </div>
+                <div style="margin-bottom: 12px; font-size: 0.78rem; color: var(--neutral-600)">
+                  <i class="bi bi-box-seam me-1"></i> 50 kg available &nbsp;
+                  <i class="bi bi-star-fill text-warning ms-2 me-1"></i> 4.8
+                </div>
+                <div class="d-flex gap-2">
+                  <button class="btn-cart flex-grow-1">
+                    <i class="bi bi-cart-plus me-1"></i>Add to Cart
+                  </button>
+                  <button
+                    style="
+                      background: var(--neutral-100);
+                      border: 1.5px solid var(--neutral-200);
+                      border-radius: 8px;
+                      padding: 8px 12px;
+                      cursor: pointer;
+                    "
+                    title="View Details"
+                  >
+                    <i class="bi bi-eye" style="color: var(--neutral-600)"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Product 2 -->
+          <div class="col-sm-6 col-lg-3">
+            <div class="product-card">
+              <div class="product-img">
+                <img
+                  src="https://images.pexels.com/photos/144248/potatoes-vegetables-erdfrucht-bio-144248.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  alt="Potato"
+                  style="width: 100%; height: 200px; object-fit: cover"
+                />
+                <span class="product-badge" style="background: var(--accent)">Organic</span>
+              </div>
+              <div class="product-body">
+                <div class="product-category">Vegetables</div>
+                <div class="product-name">Red Potato (Lal Aloo)</div>
+                <div class="product-farmer">
+                  <div class="farmer-avatar">MS</div>
+                  <span>Mahesh Singh · UP</span>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mb-12">
+                  <div>
+                    <span class="product-price">₹32</span>
+                    <span class="product-unit">/kg</span>
+                  </div>
+                  <div class="product-location">
+                    <i class="bi bi-geo-alt-fill" style="color: var(--accent)"></i> 28 km
+                  </div>
+                </div>
+                <div style="margin-bottom: 12px; font-size: 0.78rem; color: var(--neutral-600)">
+                  <i class="bi bi-box-seam me-1"></i> 80 kg available &nbsp;
+                  <i class="bi bi-star-fill text-warning ms-2 me-1"></i> 4.6
+                </div>
+                <div class="d-flex gap-2">
+                  <button class="btn-cart flex-grow-1">
+                    <i class="bi bi-cart-plus me-1"></i>Add to Cart
+                  </button>
+                  <button
+                    style="
+                      background: var(--neutral-100);
+                      border: 1.5px solid var(--neutral-200);
+                      border-radius: 8px;
+                      padding: 8px 12px;
+                      cursor: pointer;
+                    "
+                  >
+                    <i class="bi bi-eye" style="color: var(--neutral-600)"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Product 3 -->
+          <div class="col-sm-6 col-lg-3">
+            <div class="product-card">
+              <div class="product-img">
+                <img
+                  src="https://images.pexels.com/photos/144248/potatoes-vegetables-erdfrucht-bio-144248.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  alt="Potato"
+                  style="width: 100%; height: 200px; object-fit: cover"
+                />
+                <span class="product-badge" style="background: #2980b9">Best Value</span>
+              </div>
+              <div class="product-body">
+                <div class="product-category">Vegetables</div>
+                <div class="product-name">White Potato (Export)</div>
+                <div class="product-farmer">
+                  <div class="farmer-avatar">PD</div>
+                  <span>Priya Devi · Haryana</span>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mb-12">
+                  <div>
+                    <span class="product-price">₹28</span>
+                    <span class="product-unit">/kg</span>
+                  </div>
+                  <div class="product-location">
+                    <i class="bi bi-geo-alt-fill" style="color: var(--accent)"></i> 35 km
+                  </div>
+                </div>
+                <div style="margin-bottom: 12px; font-size: 0.78rem; color: var(--neutral-600)">
+                  <i class="bi bi-box-seam me-1"></i> 120 kg available &nbsp;
+                  <i class="bi bi-star-fill text-warning ms-2 me-1"></i> 4.9
+                </div>
+                <div class="d-flex gap-2">
+                  <button class="btn-cart flex-grow-1">
+                    <i class="bi bi-cart-plus me-1"></i>Add to Cart
+                  </button>
+                  <button
+                    style="
+                      background: var(--neutral-100);
+                      border: 1.5px solid var(--neutral-200);
+                      border-radius: 8px;
+                      padding: 8px 12px;
+                      cursor: pointer;
+                    "
+                  >
+                    <i class="bi bi-eye" style="color: var(--neutral-600)"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Product 4 (Dhaniya - different farmer) -->
+          <div class="col-sm-6 col-lg-3">
+            <div class="product-card">
+              <div class="product-img">
+                <img
+                  src="https://images.pexels.com/photos/5945558/pexels-photo-5945558.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  alt="Coriander"
+                  style="width: 100%; height: 200px; object-fit: cover"
+                />
+                <span class="product-badge" style="background: #27ae60">In Season</span>
+              </div>
+              <div class="product-body">
+                <div class="product-category">Herbs</div>
+                <div class="product-name">Fresh Coriander (Dhaniya)</div>
+                <div class="product-farmer">
+                  <div class="farmer-avatar">AV</div>
+                  <span>Amit Verma · Maharashtra</span>
+                </div>
+                <div class="d-flex align-items-center justify-content-between mb-12">
+                  <div>
+                    <span class="product-price">₹18</span>
+                    <span class="product-unit">/bunch</span>
+                  </div>
+                  <div class="product-location">
+                    <i class="bi bi-geo-alt-fill" style="color: var(--accent)"></i> 8 km
+                  </div>
+                </div>
+                <div style="margin-bottom: 12px; font-size: 0.78rem; color: var(--neutral-600)">
+                  <i class="bi bi-box-seam me-1"></i> 200 bunches &nbsp;
+                  <i class="bi bi-star-fill text-warning ms-2 me-1"></i> 4.7
+                </div>
+                <div class="d-flex gap-2">
+                  <button class="btn-cart flex-grow-1">
+                    <i class="bi bi-cart-plus me-1"></i>Add to Cart
+                  </button>
+                  <button
+                    style="
+                      background: var(--neutral-100);
+                      border: 1.5px solid var(--neutral-200);
+                      border-radius: 8px;
+                      padding: 8px 12px;
+                      cursor: pointer;
+                    "
+                  >
+                    <i class="bi bi-eye" style="color: var(--neutral-600)"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== CART / ORDER FLOW ======== -->
+    <section class="section-pad" style="background: var(--neutral-50)">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-label">Order Management</div>
+          <h2 class="section-title">Smart Cart — Orders Go to Right Farmers</h2>
+          <p
+            style="
+              color: var(--neutral-600);
+              max-width: 550px;
+              margin: 12px auto 0;
+              font-size: 0.95rem;
+            "
+          >
+            Add products from multiple farmers. Each farmer gets their own specific order
+            automatically — just like shopping on Amazon.
+          </p>
+        </div>
+        <div class="row g-4">
+          <!-- Cart -->
+          <div class="col-lg-7">
+            <div
+              style="
+                background: #fff;
+                border-radius: 20px;
+                border: 1.5px solid var(--neutral-200);
+                padding: 28px;
+              "
+            >
+              <h5 style="font-weight: 700; margin-bottom: 20px">
+                <i class="bi bi-cart3 me-2" style="color: var(--primary)"></i>Your Cart (3 items)
+              </h5>
+              <!-- Cart Item 1 -->
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 16px;
+                  padding: 16px 0;
+                  border-bottom: 1px solid var(--neutral-100);
+                "
+              >
+                <div
+                  style="
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 12px;
+                    overflow: hidden;
+                    flex-shrink: 0;
+                  "
+                >
+                  <img
+                    src="https://images.pexels.com/photos/144248/potatoes-vegetables-erdfrucht-bio-144248.jpeg?auto=compress&cs=tinysrgb&w=200"
+                    style="width: 100%; height: 100%; object-fit: cover"
+                  />
+                </div>
+                <div style="flex: 1">
+                  <div style="font-weight: 700; font-size: 0.9rem">Desi Potato</div>
+                  <div style="font-size: 0.78rem; color: var(--neutral-600)">
+                    Raju Kumar · Punjab
+                  </div>
+                  <div style="font-size: 0.78rem">
+                    <span
+                      style="
+                        background: rgba(45, 122, 58, 0.1);
+                        color: var(--primary);
+                        padding: 2px 8px;
+                        border-radius: 10px;
+                        font-weight: 600;
+                      "
+                      >Order → Raju Kumar</span
+                    >
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px">
+                  <button
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      border-radius: 8px;
+                      border: 1.5px solid var(--neutral-200);
+                      background: #fff;
+                      font-weight: 700;
+                      cursor: pointer;
+                    "
+                  >
+                    −
+                  </button>
+                  <span style="font-weight: 700; min-width: 24px; text-align: center">2</span>
+                  <button
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      border-radius: 8px;
+                      border: 1.5px solid var(--neutral-200);
+                      background: #fff;
+                      font-weight: 700;
+                      cursor: pointer;
+                    "
+                  >
+                    +
+                  </button>
+                  <span style="font-size: 0.75rem; color: var(--neutral-600)">kg</span>
+                </div>
+                <div
+                  style="
+                    font-weight: 800;
+                    color: var(--primary);
+                    min-width: 60px;
+                    text-align: right;
+                  "
+                >
+                  ₹48
+                </div>
+              </div>
+              <!-- Cart Item 2 -->
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 16px;
+                  padding: 16px 0;
+                  border-bottom: 1px solid var(--neutral-100);
+                "
+              >
+                <div
+                  style="
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 12px;
+                    overflow: hidden;
+                    flex-shrink: 0;
+                  "
+                >
+                  <img
+                    src="https://images.pexels.com/photos/5945558/pexels-photo-5945558.jpeg?auto=compress&cs=tinysrgb&w=200"
+                    style="width: 100%; height: 100%; object-fit: cover"
+                  />
+                </div>
+                <div style="flex: 1">
+                  <div style="font-weight: 700; font-size: 0.9rem">Fresh Coriander (Dhaniya)</div>
+                  <div style="font-size: 0.78rem; color: var(--neutral-600)">
+                    Amit Verma · Maharashtra
+                  </div>
+                  <div style="font-size: 0.78rem">
+                    <span
+                      style="
+                        background: rgba(41, 128, 185, 0.1);
+                        color: var(--info);
+                        padding: 2px 8px;
+                        border-radius: 10px;
+                        font-weight: 600;
+                      "
+                      >Order → Amit Verma</span
+                    >
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px">
+                  <button
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      border-radius: 8px;
+                      border: 1.5px solid var(--neutral-200);
+                      background: #fff;
+                      font-weight: 700;
+                      cursor: pointer;
+                    "
+                  >
+                    −
+                  </button>
+                  <span style="font-weight: 700; min-width: 24px; text-align: center">3</span>
+                  <button
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      border-radius: 8px;
+                      border: 1.5px solid var(--neutral-200);
+                      background: #fff;
+                      font-weight: 700;
+                      cursor: pointer;
+                    "
+                  >
+                    +
+                  </button>
+                  <span style="font-size: 0.75rem; color: var(--neutral-600)">bunch</span>
+                </div>
+                <div
+                  style="
+                    font-weight: 800;
+                    color: var(--primary);
+                    min-width: 60px;
+                    text-align: right;
+                  "
+                >
+                  ₹54
+                </div>
+              </div>
+              <!-- Cart Item 3 -->
+              <div style="display: flex; align-items: center; gap: 16px; padding: 16px 0">
+                <div
+                  style="
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 12px;
+                    background: linear-gradient(135deg, #ffecd2, #fcb69f);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.8rem;
+                    flex-shrink: 0;
+                  "
+                >
+                  🍅
+                </div>
+                <div style="flex: 1">
+                  <div style="font-weight: 700; font-size: 0.9rem">Cherry Tomato</div>
+                  <div style="font-size: 0.78rem; color: var(--neutral-600)">
+                    Priya Devi · Haryana
+                  </div>
+                  <div style="font-size: 0.78rem">
+                    <span
+                      style="
+                        background: rgba(231, 76, 60, 0.1);
+                        color: var(--danger);
+                        padding: 2px 8px;
+                        border-radius: 10px;
+                        font-weight: 600;
+                      "
+                      >Order → Priya Devi</span
+                    >
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px">
+                  <button
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      border-radius: 8px;
+                      border: 1.5px solid var(--neutral-200);
+                      background: #fff;
+                      font-weight: 700;
+                      cursor: pointer;
+                    "
+                  >
+                    −
+                  </button>
+                  <span style="font-weight: 700; min-width: 24px; text-align: center">1</span>
+                  <button
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      border-radius: 8px;
+                      border: 1.5px solid var(--neutral-200);
+                      background: #fff;
+                      font-weight: 700;
+                      cursor: pointer;
+                    "
+                  >
+                    +
+                  </button>
+                  <span style="font-size: 0.75rem; color: var(--neutral-600)">kg</span>
+                </div>
+                <div
+                  style="
+                    font-weight: 800;
+                    color: var(--primary);
+                    min-width: 60px;
+                    text-align: right;
+                  "
+                >
+                  ₹45
+                </div>
+              </div>
+              <!-- How orders split -->
+              <div
+                style="
+                  background: var(--primary-light);
+                  border-radius: 12px;
+                  padding: 16px;
+                  margin-top: 16px;
+                  border: 1px solid rgba(45, 122, 58, 0.2);
+                "
+              >
+                <div
+                  style="
+                    font-size: 0.82rem;
+                    font-weight: 700;
+                    color: var(--primary);
+                    margin-bottom: 8px;
+                  "
+                >
+                  <i class="bi bi-info-circle me-1"></i> How your orders are sent:
+                </div>
+                <div style="font-size: 0.8rem; color: var(--neutral-700)">
+                  Your cart will be automatically split into <strong>3 separate orders</strong> —
+                  one to each farmer. Each farmer receives only their own product order.
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Order Summary -->
+          <div class="col-lg-5">
+            <div
+              style="
+                background: #fff;
+                border-radius: 20px;
+                border: 1.5px solid var(--neutral-200);
+                padding: 28px;
+              "
+            >
+              <h5 style="font-weight: 700; margin-bottom: 20px">Order Summary</h5>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-bottom: 10px;
+                  font-size: 0.9rem;
+                "
+              >
+                <span style="color: var(--neutral-600)">Subtotal (3 items)</span>
+                <span style="font-weight: 600">₹147</span>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  margin-bottom: 10px;
+                  font-size: 0.9rem;
+                "
+              >
+                <span style="color: var(--neutral-600)">Delivery</span>
+                <span style="font-weight: 600; color: var(--success)">Free</span>
+              </div>
+              <hr style="border-color: var(--neutral-200)" />
+              <div style="display: flex; justify-content: space-between; margin-bottom: 24px">
+                <span style="font-weight: 700">Total</span>
+                <span style="font-weight: 800; font-size: 1.2rem; color: var(--primary)">₹147</span>
+              </div>
+              <div
+                style="
+                  background: var(--neutral-50);
+                  border-radius: 12px;
+                  padding: 16px;
+                  margin-bottom: 20px;
+                "
+              >
+                <div
+                  style="
+                    font-size: 0.82rem;
+                    font-weight: 700;
+                    color: var(--neutral-700);
+                    margin-bottom: 12px;
+                  "
+                >
+                  Orders will be sent to:
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: 0.8rem;
+                    margin-bottom: 8px;
+                  "
+                >
+                  <span
+                    ><i class="bi bi-person-fill me-1" style="color: var(--primary)"></i>Raju
+                    Kumar</span
+                  >
+                  <span style="font-weight: 600">Potato × 2 kg</span>
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: 0.8rem;
+                    margin-bottom: 8px;
+                  "
+                >
+                  <span
+                    ><i class="bi bi-person-fill me-1" style="color: var(--info)"></i>Amit
+                    Verma</span
+                  >
+                  <span style="font-weight: 600">Dhaniya × 3 bunch</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem">
+                  <span
+                    ><i class="bi bi-person-fill me-1" style="color: var(--danger)"></i>Priya
+                    Devi</span
+                  >
+                  <span style="font-weight: 600">Tomato × 1 kg</span>
+                </div>
+              </div>
+              <button
+                style="
+                  width: 100%;
+                  background: var(--primary);
+                  color: #fff;
+                  border: none;
+                  border-radius: 12px;
+                  padding: 16px;
+                  font-size: 1rem;
+                  font-weight: 700;
+                  cursor: pointer;
+                  transition: background 0.2s;
+                "
+                onmouseover="this.style.background = 'var(--primary-dark)'"
+                onmouseout="this.style.background = 'var(--primary)'"
+              >
+                <i class="bi bi-bag-check me-2"></i>Place Order
+              </button>
+              <div
+                style="
+                  text-align: center;
+                  margin-top: 12px;
+                  font-size: 0.78rem;
+                  color: var(--neutral-600);
+                "
+              >
+                <i class="bi bi-shield-check me-1 text-success"></i>Secure • No payment needed for
+                MVP
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== FARMER PORTAL PREVIEW ======== -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-5">
+            <div class="section-label">For Farmers</div>
+            <h2 class="section-title">Your Own Farmer Dashboard</h2>
+            <p style="color: var(--neutral-600); line-height: 1.7; margin: 16px 0 24px">
+              Register, list your produce, track orders, and mark deliveries — all in one simple
+              portal built for farmers.
+            </p>
+            <div class="d-flex flex-column gap-3">
+              <div style="display: flex; align-items: flex-start; gap: 14px">
+                <div
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    background: var(--primary-light);
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                  "
+                >
+                  <i class="bi bi-plus-circle" style="color: var(--primary)"></i>
+                </div>
+                <div>
+                  <div style="font-weight: 700; font-size: 0.9rem">List Your Products</div>
+                  <div style="font-size: 0.82rem; color: var(--neutral-600)">
+                    Add what you're growing and how much is available. Admin-created products, you
+                    just list quantity & price.
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: flex-start; gap: 14px">
+                <div
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    background: var(--accent-light);
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                  "
+                >
+                  <i class="bi bi-bell" style="color: var(--accent)"></i>
+                </div>
+                <div>
+                  <div style="font-weight: 700; font-size: 0.9rem">Receive Orders</div>
+                  <div style="font-size: 0.82rem; color: var(--neutral-600)">
+                    Get notified instantly when a customer places an order for your product.
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: flex-start; gap: 14px">
+                <div
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    background: rgba(39, 174, 96, 0.1);
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                  "
+                >
+                  <i class="bi bi-check2-circle" style="color: var(--success)"></i>
+                </div>
+                <div>
+                  <div style="font-weight: 700; font-size: 0.9rem">Mark as Delivered</div>
+                  <div style="font-size: 0.82rem; color: var(--neutral-600)">
+                    Once you deliver, mark the order complete with a single tap.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a
+              href="#"
+              class="btn-primary-custom text-decoration-none d-inline-block mt-24"
+              style="margin-top: 24px"
+            >
+              <i class="bi bi-person-plus me-2"></i>Register as Farmer
+            </a>
+          </div>
+          <div class="col-lg-7">
+            <!-- Dashboard UI mockup -->
+            <div
+              style="
+                background: #fff;
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                border: 1.5px solid var(--neutral-200);
+              "
+            >
+              <div class="portal-nav">
+                <div class="container-fluid">
+                  <div class="d-flex align-items-center justify-content-between px-3">
+                    <span
+                      style="
+                        font-family: 'Playfair Display', serif;
+                        font-weight: 800;
+                        font-size: 1.1rem;
+                      "
+                      >FarmDirect <span style="color: var(--accent)">Farmer</span></span
+                    >
+                    <div class="d-flex gap-1">
+                      <span class="portal-nav-link active">Dashboard</span>
+                      <span class="portal-nav-link">My Products</span>
+                      <span class="portal-nav-link">Orders</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px">
+                      <div
+                        style="
+                          width: 32px;
+                          height: 32px;
+                          border-radius: 50%;
+                          background: rgba(255, 255, 255, 0.2);
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          font-size: 0.8rem;
+                          font-weight: 700;
+                        "
+                      >
+                        RK
+                      </div>
+                      <span style="font-size: 0.85rem">Raju Kumar</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row g-0">
+                <div
+                  class="col-3"
+                  style="
+                    background: var(--neutral-50);
+                    padding: 20px 12px;
+                    border-right: 1px solid var(--neutral-200);
+                  "
+                >
+                  <div class="sidebar-item active"><i class="bi bi-grid"></i> Overview</div>
+                  <div class="sidebar-item"><i class="bi bi-basket"></i> Products</div>
+                  <div class="sidebar-item"><i class="bi bi-receipt"></i> Orders</div>
+                  <div class="sidebar-item"><i class="bi bi-check2-circle"></i> Delivered</div>
+                  <div class="sidebar-item"><i class="bi bi-person"></i> Profile</div>
+                </div>
+                <div class="col-9" style="padding: 20px">
+                  <div class="row g-3 mb-3">
+                    <div class="col-4">
+                      <div
+                        style="
+                          background: var(--primary-light);
+                          border-radius: 12px;
+                          padding: 16px;
+                          text-align: center;
+                        "
+                      >
+                        <div style="font-size: 1.4rem; font-weight: 800; color: var(--primary)">
+                          12
+                        </div>
+                        <div style="font-size: 0.72rem; color: var(--neutral-600)">
+                          Products Listed
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div
+                        style="
+                          background: var(--accent-light);
+                          border-radius: 12px;
+                          padding: 16px;
+                          text-align: center;
+                        "
+                      >
+                        <div style="font-size: 1.4rem; font-weight: 800; color: var(--accent)">
+                          8
+                        </div>
+                        <div style="font-size: 0.72rem; color: var(--neutral-600)">
+                          Pending Orders
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div
+                        style="
+                          background: rgba(39, 174, 96, 0.1);
+                          border-radius: 12px;
+                          padding: 16px;
+                          text-align: center;
+                        "
+                      >
+                        <div style="font-size: 1.4rem; font-weight: 800; color: var(--success)">
+                          24
+                        </div>
+                        <div style="font-size: 0.72rem; color: var(--neutral-600)">Delivered</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="
+                      font-size: 0.82rem;
+                      font-weight: 700;
+                      color: var(--neutral-700);
+                      margin-bottom: 10px;
+                    "
+                  >
+                    Recent Orders
+                  </div>
+                  <div
+                    class="order-row"
+                    style="padding: 10px 0; border-bottom: 1px solid var(--neutral-100)"
+                  >
+                    <div>
+                      <div style="font-size: 0.82rem; font-weight: 600">Potato × 2 kg</div>
+                      <div style="font-size: 0.72rem; color: var(--neutral-600)">
+                        Customer: Rahul Sharma
+                      </div>
+                    </div>
+                    <span class="status-pill status-pending">Pending</span>
+                  </div>
+                  <div
+                    class="order-row"
+                    style="padding: 10px 0; border-bottom: 1px solid var(--neutral-100)"
+                  >
+                    <div>
+                      <div style="font-size: 0.82rem; font-weight: 600">Onion × 5 kg</div>
+                      <div style="font-size: 0.72rem; color: var(--neutral-600)">
+                        Customer: Neha Gupta
+                      </div>
+                    </div>
+                    <span class="status-pill status-processing">Processing</span>
+                  </div>
+                  <div class="order-row" style="padding: 10px 0">
+                    <div>
+                      <div style="font-size: 0.82rem; font-weight: 600">Tomato × 3 kg</div>
+                      <div style="font-size: 0.72rem; color: var(--neutral-600)">
+                        Customer: Vikram Patel
+                      </div>
+                    </div>
+                    <span class="status-pill status-delivered">Delivered</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== HOW IT WORKS ======== -->
+    <section class="how-section section-pad">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-label">Simple Process</div>
+          <h2 class="section-title">How FarmDirect Works</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-6 col-md-3">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <div class="step-icon">👨‍🌾</div>
+              <div class="step-title">Farmer Registers</div>
+              <div class="step-desc">
+                Farmer signs up and lists the produce they plan to sell with quantity and price.
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <div class="step-icon">🔍</div>
+              <div class="step-title">Customer Searches</div>
+              <div class="step-desc">
+                Customer searches for any product — sees all farmers who have it listed.
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <div class="step-icon">🛒</div>
+              <div class="step-title">Place Order</div>
+              <div class="step-desc">
+                Customer adds to cart and places order. Each product order goes to its respective
+                farmer.
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="step-card">
+              <div class="step-number">4</div>
+              <div class="step-icon">✅</div>
+              <div class="step-title">Farmer Delivers</div>
+              <div class="step-desc">
+                Farmer delivers and marks the order as complete. Customer gets fresh produce.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== FEATURED FARMERS ======== -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-label">Our Growers</div>
+          <h2 class="section-title">Featured Farmers</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-sm-6 col-lg-3">
+            <div class="farmer-card">
+              <div class="farmer-avatar-lg">RK</div>
+              <div class="farmer-name">Raju Kumar</div>
+              <div class="farmer-location">
+                <i class="bi bi-geo-alt-fill" style="color: var(--accent)"></i> Ludhiana, Punjab
+              </div>
+              <div class="farmer-rating">
+                <i class="bi bi-star-fill"></i> 4.8 &nbsp;<span
+                  style="color: var(--neutral-600); font-weight: 400"
+                  >(124 reviews)</span
+                >
+              </div>
+              <div class="mt-3">
+                <span class="farmer-tag">Potato</span>
+                <span class="farmer-tag">Onion</span>
+                <span class="farmer-tag">Wheat</span>
+              </div>
+              <a
+                href="#"
+                style="
+                  display: block;
+                  margin-top: 16px;
+                  text-align: center;
+                  color: var(--primary);
+                  font-size: 0.85rem;
+                  font-weight: 600;
+                  text-decoration: none;
+                "
+                >View Profile →</a
+              >
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="farmer-card">
+              <div
+                class="farmer-avatar-lg"
+                style="background: linear-gradient(135deg, #f4a024, #e67e22)"
+              >
+                MS
+              </div>
+              <div class="farmer-name">Mahesh Singh</div>
+              <div class="farmer-location">
+                <i class="bi bi-geo-alt-fill" style="color: var(--accent)"></i> Agra, Uttar Pradesh
+              </div>
+              <div class="farmer-rating">
+                <i class="bi bi-star-fill"></i> 4.6 &nbsp;<span
+                  style="color: var(--neutral-600); font-weight: 400"
+                  >(89 reviews)</span
+                >
+              </div>
+              <div class="mt-3">
+                <span class="farmer-tag">Red Potato</span>
+                <span class="farmer-tag">Carrot</span>
+                <span class="farmer-tag">Beets</span>
+              </div>
+              <a
+                href="#"
+                style="
+                  display: block;
+                  margin-top: 16px;
+                  text-align: center;
+                  color: var(--primary);
+                  font-size: 0.85rem;
+                  font-weight: 600;
+                  text-decoration: none;
+                "
+                >View Profile →</a
+              >
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="farmer-card">
+              <div
+                class="farmer-avatar-lg"
+                style="background: linear-gradient(135deg, #2980b9, #3498db)"
+              >
+                PD
+              </div>
+              <div class="farmer-name">Priya Devi</div>
+              <div class="farmer-location">
+                <i class="bi bi-geo-alt-fill" style="color: var(--accent)"></i> Karnal, Haryana
+              </div>
+              <div class="farmer-rating">
+                <i class="bi bi-star-fill"></i> 4.9 &nbsp;<span
+                  style="color: var(--neutral-600); font-weight: 400"
+                  >(208 reviews)</span
+                >
+              </div>
+              <div class="mt-3">
+                <span class="farmer-tag">Tomato</span>
+                <span class="farmer-tag">Capsicum</span>
+                <span class="farmer-tag">Brinjal</span>
+              </div>
+              <a
+                href="#"
+                style="
+                  display: block;
+                  margin-top: 16px;
+                  text-align: center;
+                  color: var(--primary);
+                  font-size: 0.85rem;
+                  font-weight: 600;
+                  text-decoration: none;
+                "
+                >View Profile →</a
+              >
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="farmer-card">
+              <div
+                class="farmer-avatar-lg"
+                style="background: linear-gradient(135deg, #e74c3c, #c0392b)"
+              >
+                AV
+              </div>
+              <div class="farmer-name">Amit Verma</div>
+              <div class="farmer-location">
+                <i class="bi bi-geo-alt-fill" style="color: var(--accent)"></i> Nashik, Maharashtra
+              </div>
+              <div class="farmer-rating">
+                <i class="bi bi-star-fill"></i> 4.7 &nbsp;<span
+                  style="color: var(--neutral-600); font-weight: 400"
+                  >(156 reviews)</span
+                >
+              </div>
+              <div class="mt-3">
+                <span class="farmer-tag">Coriander</span>
+                <span class="farmer-tag">Spinach</span>
+                <span class="farmer-tag">Grapes</span>
+              </div>
+              <a
+                href="#"
+                style="
+                  display: block;
+                  margin-top: 16px;
+                  text-align: center;
+                  color: var(--primary);
+                  font-size: 0.85rem;
+                  font-weight: 600;
+                  text-decoration: none;
+                "
+                >View Profile →</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== TESTIMONIALS ======== -->
+    <section class="section-pad" style="background: var(--neutral-50)">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-label">What They Say</div>
+          <h2 class="section-title">Loved by Farmers & Customers</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="testimonial-card">
+              <div style="color: var(--accent); font-size: 1.2rem; margin-bottom: 12px">★★★★★</div>
+              <div class="testimonial-quote">
+                "Finally I can sell my potatoes directly to customers without giving commission to
+                middlemen. My income has increased by 40% since joining."
+              </div>
+              <div class="testimonial-author">Raju Kumar</div>
+              <div class="testimonial-role">Potato Farmer, Punjab</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="testimonial-card">
+              <div style="color: var(--accent); font-size: 1.2rem; margin-bottom: 12px">★★★★★</div>
+              <div class="testimonial-quote">
+                "I love that I can order vegetables from different farmers in one go. The vegetables
+                are so fresh — nothing like what you get in the market!"
+              </div>
+              <div class="testimonial-author">Rahul Sharma</div>
+              <div class="testimonial-role">Customer, Delhi</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="testimonial-card">
+              <div style="color: var(--accent); font-size: 1.2rem; margin-bottom: 12px">★★★★★</div>
+              <div class="testimonial-quote">
+                "The dashboard makes it super easy to manage my products and orders. Even my father
+                who is not tech-savvy could learn it in one day."
+              </div>
+              <div class="testimonial-author">Priya Devi</div>
+              <div class="testimonial-role">Vegetable Farmer, Haryana</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== CTA ======== -->
+    <section
+      style="
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+        padding: 80px 0;
+        color: #fff;
+      "
+    >
+      <div class="container text-center">
+        <div
+          style="
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.75;
+            margin-bottom: 16px;
+          "
+        >
+          Join the Movement
+        </div>
+        <h2
+          style="
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 16px;
+          "
+        >
+          Ready to Start Selling<br />or Buying Fresh?
+        </h2>
+        <p style="opacity: 0.85; max-width: 500px; margin: 0 auto 36px; line-height: 1.7">
+          Whether you are a farmer with fresh produce or a customer looking for quality — FarmDirect
+          is your platform.
+        </p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+          <a
+            href="#"
+            style="
+              background: #fff;
+              color: var(--primary);
+              border: none;
+              border-radius: 10px;
+              padding: 14px 32px;
+              font-weight: 700;
+              font-size: 1rem;
+              text-decoration: none;
+              transition: all 0.2s;
+            "
+            onmouseover="this.style.transform = 'translateY(-2px)'"
+            onmouseout="this.style.transform = 'none'"
+          >
+            <i class="bi bi-person-plus me-2"></i>Register as Farmer
+          </a>
+          <a
+            href="#"
+            style="
+              background: rgba(255, 255, 255, 0.15);
+              color: #fff;
+              border: 2px solid rgba(255, 255, 255, 0.4);
+              border-radius: 10px;
+              padding: 14px 32px;
+              font-weight: 700;
+              font-size: 1rem;
+              text-decoration: none;
+              transition: all 0.2s;
+            "
+            onmouseover="this.style.background = 'rgba(255,255,255,0.25)'"
+            onmouseout="this.style.background = 'rgba(255,255,255,0.15)'"
+          >
+            <i class="bi bi-bag me-2"></i>Shop as Customer
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== FOOTER ======== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="footer-brand">Farm<span>Direct</span></div>
+            <div class="footer-desc">
+              Connecting farmers directly with customers. Fresh produce, fair prices, and honest
+              food from honest people.
+            </div>
+            <div class="d-flex gap-3 mt-16" style="margin-top: 16px">
+              <a
+                href="#"
+                style="
+                  color: rgba(255, 255, 255, 0.6);
+                  font-size: 1.2rem;
+                  text-decoration: none;
+                  transition: color 0.2s;
+                "
+                onmouseover="this.style.color = '#fff'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.6)'"
+                ><i class="bi bi-facebook"></i
+              ></a>
+              <a
+                href="#"
+                style="
+                  color: rgba(255, 255, 255, 0.6);
+                  font-size: 1.2rem;
+                  text-decoration: none;
+                  transition: color 0.2s;
+                "
+                onmouseover="this.style.color = '#fff'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.6)'"
+                ><i class="bi bi-twitter-x"></i
+              ></a>
+              <a
+                href="#"
+                style="
+                  color: rgba(255, 255, 255, 0.6);
+                  font-size: 1.2rem;
+                  text-decoration: none;
+                  transition: color 0.2s;
+                "
+                onmouseover="this.style.color = '#fff'"
+                onmouseout="this.style.color = 'rgba(255,255,255,0.6)'"
+                ><i class="bi bi-instagram"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-sm-4 col-lg-2 offset-lg-1">
+            <div class="footer-heading">Platform</div>
+            <a href="#" class="footer-link">Home</a>
+            <a href="#" class="footer-link">Browse Products</a>
+            <a href="#" class="footer-link">Find Farmers</a>
+            <a href="#" class="footer-link">Categories</a>
+          </div>
+          <div class="col-sm-4 col-lg-2">
+            <div class="footer-heading">For Farmers</div>
+            <a href="#" class="footer-link">Register</a>
+            <a href="#" class="footer-link">Dashboard</a>
+            <a href="#" class="footer-link">List Products</a>
+            <a href="#" class="footer-link">Manage Orders</a>
+          </div>
+          <div class="col-sm-4 col-lg-3">
+            <div class="footer-heading">Portals</div>
+            <a href="#" class="footer-link"
+              ><i class="bi bi-shield-lock me-2" style="color: var(--danger)"></i>Super Admin
+              Login</a
+            >
+            <a href="#" class="footer-link"
+              ><i class="bi bi-person-badge me-2" style="color: var(--primary)"></i>Farmer Login</a
+            >
+            <a href="#" class="footer-link"
+              ><i class="bi bi-person me-2" style="color: var(--info)"></i>Customer Login</a
+            >
+          </div>
+        </div>
+        <hr class="footer-divider" />
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+          <div class="footer-bottom">© 2024 FarmDirect. All rights reserved.</div>
+          <div class="d-flex gap-3">
+            <a href="#" class="footer-link" style="font-size: 0.8rem">Privacy Policy</a>
+            <a href="#" class="footer-link" style="font-size: 0.8rem">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

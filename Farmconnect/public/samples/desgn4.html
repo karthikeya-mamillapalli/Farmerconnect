@@ -1,0 +1,2608 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HarvestLink — Design 3: Modern Dark Teal</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <style>
+      :root {
+        --primary: #0d9488;
+        --primary-dark: #0f766e;
+        --primary-darker: #134e4a;
+        --primary-light: #ccfbf1;
+        --primary-mid: #14b8a6;
+        --accent: #f59e0b;
+        --accent-light: #fef3c7;
+        --accent-dark: #d97706;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #f43f5e;
+        --info: #38bdf8;
+        --dark-bg: #0a0f0e;
+        --dark-card: #111918;
+        --dark-card-2: #162220;
+        --dark-border: rgba(13, 148, 136, 0.2);
+        --dark-border-soft: rgba(255, 255, 255, 0.06);
+        --neutral-50: #f0fdfa;
+        --neutral-100: #e0f7f4;
+        --neutral-200: #99f6e4;
+        --neutral-600: #4b5563;
+        --neutral-700: #374151;
+        --neutral-800: #1f2937;
+        --neutral-900: #111827;
+        --text-muted: rgba(255, 255, 255, 0.5);
+        --text-soft: rgba(255, 255, 255, 0.75);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Sora', sans-serif;
+        background: var(--dark-bg);
+        color: rgba(255, 255, 255, 0.9);
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: 'Crimson Pro', serif;
+      }
+
+      /* NAVBAR */
+      .navbar-hl {
+        background: rgba(10, 15, 14, 0.95);
+        border-bottom: 1px solid var(--dark-border);
+        backdrop-filter: blur(20px);
+        padding: 14px 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .brand-hl {
+        font-family: 'Crimson Pro', serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .brand-hl span {
+        color: var(--primary-mid);
+      }
+      .nav-hl-link {
+        color: var(--text-muted) !important;
+        font-size: 0.875rem;
+        font-weight: 500;
+        padding: 6px 14px !important;
+        border-radius: 8px;
+        transition: all 0.2s;
+      }
+      .nav-hl-link:hover {
+        color: #fff !important;
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .btn-primary-hl {
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 9px 22px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        transition: all 0.2s;
+      }
+      .btn-primary-hl:hover {
+        background: var(--primary-dark);
+        color: #fff;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 16px rgba(13, 148, 136, 0.4);
+      }
+      .btn-ghost-hl {
+        background: transparent;
+        color: var(--text-soft);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        padding: 9px 22px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        transition: all 0.2s;
+      }
+      .btn-ghost-hl:hover {
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+      .btn-accent-hl {
+        background: var(--accent);
+        color: #000;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 28px;
+        font-size: 1rem;
+        font-weight: 700;
+        transition: all 0.2s;
+      }
+      .btn-accent-hl:hover {
+        background: var(--accent-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+      }
+
+      /* HERO */
+      .hero-hl {
+        background: linear-gradient(135deg, #0a0f0e 0%, #0d2424 50%, #0a1a19 100%);
+        padding: 90px 0 70px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-hl::before {
+        content: '';
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(13, 148, 136, 0.12) 0%, transparent 60%);
+        border-radius: 50%;
+      }
+      .hero-hl::after {
+        content: '';
+        position: absolute;
+        bottom: -100px;
+        left: -100px;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(245, 158, 11, 0.06) 0%, transparent 60%);
+        border-radius: 50%;
+      }
+      .hero-hl-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(13, 148, 136, 0.15);
+        color: var(--primary-mid);
+        border: 1px solid rgba(13, 148, 136, 0.3);
+        border-radius: 20px;
+        padding: 6px 16px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        margin-bottom: 24px;
+      }
+      .hero-hl-title {
+        font-size: clamp(2.4rem, 5vw, 4rem);
+        line-height: 1.1;
+        color: #fff;
+      }
+      .hero-hl-title .teal {
+        color: var(--primary-mid);
+      }
+      .hero-hl-title .amber {
+        color: var(--accent);
+      }
+      .hero-hl-sub {
+        font-family: 'Sora', sans-serif;
+        font-size: 1rem;
+        color: var(--text-muted);
+        line-height: 1.8;
+        max-width: 480px;
+        margin: 20px 0 36px;
+      }
+      .hero-stats-row {
+        display: flex;
+        gap: 0;
+        border-top: 1px solid var(--dark-border-soft);
+        padding-top: 32px;
+        margin-top: 32px;
+      }
+      .hero-stat {
+        flex: 1;
+        padding-right: 32px;
+        border-right: 1px solid var(--dark-border-soft);
+        margin-right: 32px;
+      }
+      .hero-stat:last-child {
+        border-right: none;
+        margin-right: 0;
+        padding-right: 0;
+      }
+      .hero-stat-n {
+        font-family: 'Crimson Pro', serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary-mid);
+      }
+      .hero-stat-l {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        margin-top: 2px;
+      }
+      .hero-img-hl {
+        border-radius: 24px;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid var(--dark-border);
+        box-shadow:
+          0 24px 80px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(13, 148, 136, 0.1);
+      }
+      .hero-glass-card {
+        position: absolute;
+        bottom: 24px;
+        left: 24px;
+        right: 24px;
+        background: rgba(10, 15, 14, 0.85);
+        border: 1px solid var(--dark-border);
+        border-radius: 14px;
+        padding: 16px 20px;
+        backdrop-filter: blur(20px);
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .live-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--success);
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.6;
+          transform: scale(0.9);
+        }
+      }
+
+      /* SEARCH */
+      .search-hl-wrap {
+        background: var(--dark-card);
+        border-bottom: 1px solid var(--dark-border-soft);
+        padding: 24px 0;
+      }
+      .search-hl {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--dark-border);
+        border-radius: 10px;
+        padding: 12px 16px 12px 44px;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.9);
+        width: 100%;
+        transition: all 0.2s;
+        font-family: 'Sora', sans-serif;
+      }
+      .search-hl::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+      }
+      .search-hl:focus {
+        outline: none;
+        border-color: var(--primary);
+        background: rgba(13, 148, 136, 0.08);
+        box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+      }
+      .select-hl {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--dark-border);
+        border-radius: 10px;
+        padding: 12px 14px;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.9);
+        width: 100%;
+        transition: all 0.2s;
+        font-family: 'Sora', sans-serif;
+      }
+      .select-hl:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+      }
+      .select-hl option {
+        background: var(--dark-card);
+        color: #fff;
+      }
+      .search-btn-hl {
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 12px 28px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: all 0.2s;
+      }
+      .search-btn-hl:hover {
+        background: var(--primary-dark);
+      }
+      .tag-hl {
+        background: rgba(13, 148, 136, 0.1);
+        color: var(--primary-mid);
+        border: 1px solid rgba(13, 148, 136, 0.25);
+        border-radius: 20px;
+        padding: 4px 14px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .tag-hl:hover {
+        background: rgba(13, 148, 136, 0.2);
+      }
+
+      /* CARD GLASS */
+      .glass-card {
+        background: var(--dark-card);
+        border: 1px solid var(--dark-border-soft);
+        border-radius: 16px;
+        transition: all 0.25s;
+      }
+      .glass-card:hover {
+        border-color: var(--dark-border);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        transform: translateY(-3px);
+      }
+
+      /* CATEGORY CARD */
+      .cat-hl {
+        background: var(--dark-card);
+        border: 1px solid var(--dark-border-soft);
+        border-radius: 14px;
+        padding: 24px 16px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.25s;
+      }
+      .cat-hl:hover {
+        border-color: var(--primary);
+        background: var(--dark-card-2);
+        box-shadow: 0 0 24px rgba(13, 148, 136, 0.15);
+      }
+      .cat-hl-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 14px;
+        background: rgba(13, 148, 136, 0.1);
+        border: 1px solid rgba(13, 148, 136, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        margin: 0 auto 12px;
+        transition: all 0.25s;
+      }
+      .cat-hl:hover .cat-hl-icon {
+        background: var(--primary);
+        border-color: var(--primary);
+      }
+      .cat-hl-name {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .cat-hl-count {
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        margin-top: 4px;
+      }
+
+      /* PRODUCT CARD */
+      .prod-hl {
+        background: var(--dark-card);
+        border: 1px solid var(--dark-border-soft);
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all 0.3s;
+      }
+      .prod-hl:hover {
+        border-color: rgba(13, 148, 136, 0.4);
+        box-shadow:
+          0 12px 40px rgba(0, 0, 0, 0.4),
+          0 0 0 1px rgba(13, 148, 136, 0.1);
+        transform: translateY(-4px);
+      }
+      .prod-hl-img {
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+      }
+      .prod-hl-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s;
+      }
+      .prod-hl:hover .prod-hl-img img {
+        transform: scale(1.06);
+      }
+      .prod-hl-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(10, 15, 14, 0.7) 0%, transparent 50%);
+      }
+      .prod-hl-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: var(--primary);
+        color: #fff;
+        font-size: 0.68rem;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .prod-hl-body {
+        padding: 18px;
+      }
+      .prod-hl-cat {
+        font-size: 0.7rem;
+        color: var(--primary-mid);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .prod-hl-name {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.92);
+        margin: 4px 0 10px;
+      }
+      .prod-hl-farmer {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .farmer-chip {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.65rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .prod-hl-price {
+        font-family: 'Crimson Pro', serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--primary-mid);
+      }
+      .prod-hl-unit {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+      }
+      .prod-hl-meta {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin: 8px 0 14px;
+      }
+      .btn-cart-hl {
+        background: rgba(13, 148, 136, 0.15);
+        color: var(--primary-mid);
+        border: 1px solid rgba(13, 148, 136, 0.35);
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        width: 100%;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .btn-cart-hl:hover {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+      }
+
+      /* SECTION LABELS */
+      .label-hl {
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--primary-mid);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .title-hl {
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        color: #fff;
+        margin-top: 8px;
+      }
+
+      /* DASHBOARD */
+      .dash-sidebar {
+        background: var(--dark-card);
+        border-right: 1px solid var(--dark-border-soft);
+        padding: 20px 12px;
+        min-height: 500px;
+      }
+      .dash-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-bottom: 4px;
+      }
+      .dash-item:hover,
+      .dash-item.active {
+        background: rgba(13, 148, 136, 0.15);
+        color: var(--primary-mid);
+      }
+      .dash-item .bi {
+        font-size: 1rem;
+      }
+      .metric-hl {
+        background: var(--dark-card-2);
+        border: 1px solid var(--dark-border);
+        border-radius: 14px;
+        padding: 20px;
+        transition: all 0.2s;
+      }
+      .metric-hl:hover {
+        border-color: var(--primary);
+      }
+      .metric-num {
+        font-family: 'Crimson Pro', serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .metric-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-top: 4px;
+      }
+      .metric-change {
+        font-size: 0.75rem;
+        color: var(--success);
+        font-weight: 600;
+      }
+      .order-hl {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--dark-border-soft);
+      }
+      .order-hl:last-child {
+        border-bottom: none;
+      }
+      .status-hl {
+        padding: 4px 12px;
+        border-radius: 6px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .sh-pending {
+        background: rgba(245, 158, 11, 0.15);
+        color: var(--accent);
+        border: 1px solid rgba(245, 158, 11, 0.25);
+      }
+      .sh-processing {
+        background: rgba(56, 189, 248, 0.15);
+        color: var(--info);
+        border: 1px solid rgba(56, 189, 248, 0.25);
+      }
+      .sh-delivered {
+        background: rgba(16, 185, 129, 0.15);
+        color: var(--success);
+        border: 1px solid rgba(16, 185, 129, 0.25);
+      }
+
+      /* CART SECTION */
+      .cart-hl {
+        background: var(--dark-card);
+        border: 1px solid var(--dark-border-soft);
+        border-radius: 20px;
+        padding: 28px;
+      }
+      .cart-item-hl {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--dark-border-soft);
+      }
+      .cart-item-hl:last-child {
+        border-bottom: none;
+      }
+      .cart-img-hl {
+        width: 56px;
+        height: 56px;
+        border-radius: 10px;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+      .cart-img-hl img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .qty-btn-hl {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.9rem;
+      }
+      .qty-btn-hl:hover {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #fff;
+      }
+      .order-to-badge {
+        font-size: 0.7rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-weight: 700;
+      }
+      .ot-1 {
+        background: rgba(13, 148, 136, 0.15);
+        color: var(--primary-mid);
+      }
+      .ot-2 {
+        background: rgba(56, 189, 248, 0.15);
+        color: var(--info);
+      }
+      .ot-3 {
+        background: rgba(245, 158, 11, 0.15);
+        color: var(--accent);
+      }
+      .summary-hl {
+        background: var(--dark-card);
+        border: 1px solid var(--dark-border-soft);
+        border-radius: 20px;
+        padding: 28px;
+      }
+      .place-order-btn {
+        width: 100%;
+        background: linear-gradient(135deg, var(--primary), var(--primary-mid));
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        padding: 16px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+        letter-spacing: 0.3px;
+      }
+      .place-order-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(13, 148, 136, 0.4);
+      }
+
+      /* FARMER CARD */
+      .farmer-hl {
+        background: var(--dark-card);
+        border: 1px solid var(--dark-border-soft);
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all 0.25s;
+      }
+      .farmer-hl:hover {
+        border-color: rgba(13, 148, 136, 0.4);
+        box-shadow: 0 0 30px rgba(13, 148, 136, 0.1);
+        transform: translateY(-3px);
+      }
+      .farmer-hl-header {
+        height: 72px;
+        position: relative;
+        overflow: hidden;
+      }
+      .farmer-hl-header::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(10, 15, 14, 0) 0%, rgba(10, 15, 14, 0.6) 100%);
+      }
+      .farmer-hl-av {
+        width: 64px;
+        height: 64px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary-mid));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #fff;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        margin: -32px auto 0;
+        position: relative;
+        z-index: 1;
+      }
+      .farmer-hl-body {
+        padding: 12px 20px 20px;
+        text-align: center;
+      }
+      .farmer-hl-name {
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 4px;
+      }
+      .farmer-hl-loc {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+      }
+      .crop-tag {
+        display: inline-block;
+        background: rgba(13, 148, 136, 0.1);
+        color: var(--primary-mid);
+        border: 1px solid rgba(13, 148, 136, 0.2);
+        border-radius: 6px;
+        padding: 2px 8px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        margin: 2px;
+      }
+      .farmer-hl-stats {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid var(--dark-border-soft);
+      }
+      .fstat-n {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .fstat-l {
+        font-size: 0.68rem;
+        color: var(--text-muted);
+      }
+
+      /* HOW IT WORKS */
+      .how-hl {
+        background: linear-gradient(180deg, var(--dark-bg) 0%, var(--dark-card) 100%);
+        border-top: 1px solid var(--dark-border-soft);
+        border-bottom: 1px solid var(--dark-border-soft);
+      }
+      .step-hl {
+        background: var(--dark-card-2);
+        border: 1px solid var(--dark-border-soft);
+        border-radius: 16px;
+        padding: 32px 24px;
+        text-align: center;
+        position: relative;
+        transition: all 0.25s;
+      }
+      .step-hl:hover {
+        border-color: var(--dark-border);
+        box-shadow: 0 0 24px rgba(13, 148, 136, 0.1);
+      }
+      .step-hl-num {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 16px;
+      }
+      .step-hl-icon {
+        font-size: 2rem;
+        margin-bottom: 12px;
+      }
+      .step-hl-title {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 8px;
+      }
+      .step-hl-desc {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      /* ROLES */
+      .role-hl {
+        background: var(--dark-card-2);
+        border: 1px solid var(--dark-border-soft);
+        border-radius: 18px;
+        padding: 28px;
+        transition: all 0.25s;
+        position: relative;
+        overflow: hidden;
+      }
+      .role-hl::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        border-radius: 18px 18px 0 0;
+      }
+      .role-hl.r-admin::before {
+        background: linear-gradient(90deg, var(--danger), #fb7185);
+      }
+      .role-hl.r-farmer::before {
+        background: linear-gradient(90deg, var(--success), #34d399);
+      }
+      .role-hl.r-customer::before {
+        background: linear-gradient(90deg, var(--info), #7dd3fc);
+      }
+      .role-hl.r-creator::before {
+        background: linear-gradient(90deg, var(--accent), #fcd34d);
+      }
+      .role-hl:hover {
+        border-color: var(--dark-border);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+      }
+      .role-hl-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 16px;
+      }
+      .ri-admin {
+        background: rgba(244, 63, 94, 0.12);
+      }
+      .ri-farmer {
+        background: rgba(16, 185, 129, 0.12);
+      }
+      .ri-customer {
+        background: rgba(56, 189, 248, 0.12);
+      }
+      .ri-creator {
+        background: rgba(245, 158, 11, 0.12);
+      }
+      .role-hl-title {
+        font-weight: 700;
+        font-size: 1rem;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+      .role-hl-desc {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+      .role-hl-feat {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 6px;
+      }
+      .role-hl-feat i {
+        font-size: 0.8rem;
+        color: var(--success);
+      }
+      .btn-role-hl {
+        display: block;
+        text-align: center;
+        border-radius: 8px;
+        padding: 10px 16px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.2s;
+        margin-top: 20px;
+      }
+      .br-admin {
+        background: rgba(244, 63, 94, 0.15);
+        color: #fb7185;
+        border: 1px solid rgba(244, 63, 94, 0.25);
+      }
+      .br-admin:hover {
+        background: var(--danger);
+        color: #fff;
+      }
+      .br-farmer {
+        background: rgba(16, 185, 129, 0.15);
+        color: #34d399;
+        border: 1px solid rgba(16, 185, 129, 0.25);
+      }
+      .br-farmer:hover {
+        background: var(--success);
+        color: #fff;
+      }
+      .br-customer {
+        background: rgba(56, 189, 248, 0.15);
+        color: var(--info);
+        border: 1px solid rgba(56, 189, 248, 0.25);
+      }
+      .br-customer:hover {
+        background: var(--info);
+        color: #fff;
+      }
+      .br-creator {
+        background: rgba(245, 158, 11, 0.15);
+        color: var(--accent);
+        border: 1px solid rgba(245, 158, 11, 0.25);
+      }
+      .br-creator:hover {
+        background: var(--accent);
+        color: #000;
+      }
+
+      /* TESTIMONIAL */
+      .testi-hl {
+        background: var(--dark-card-2);
+        border: 1px solid var(--dark-border-soft);
+        border-radius: 18px;
+        padding: 28px;
+        transition: all 0.25s;
+      }
+      .testi-hl:hover {
+        border-color: var(--dark-border);
+      }
+      .testi-stars {
+        color: var(--accent);
+        font-size: 0.9rem;
+        margin-bottom: 14px;
+      }
+      .testi-quote {
+        font-size: 0.88rem;
+        line-height: 1.75;
+        color: rgba(255, 255, 255, 0.7);
+        font-style: italic;
+        margin-bottom: 20px;
+      }
+      .testi-name {
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .testi-role {
+        font-size: 0.78rem;
+        color: var(--primary-mid);
+        font-weight: 500;
+      }
+
+      /* FOOTER */
+      .footer-hl {
+        background: var(--dark-card);
+        border-top: 1px solid var(--dark-border-soft);
+        padding: 64px 0 32px;
+      }
+      .footer-hl-brand {
+        font-family: 'Crimson Pro', serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .footer-hl-brand span {
+        color: var(--primary-mid);
+      }
+      .footer-hl-link {
+        display: block;
+        color: var(--text-muted);
+        font-size: 0.875rem;
+        margin-bottom: 10px;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-hl-link:hover {
+        color: var(--primary-mid);
+      }
+      .footer-hl-head {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: rgba(255, 255, 255, 0.3);
+        margin-bottom: 16px;
+      }
+      .social-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      .social-btn:hover {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #fff;
+      }
+
+      /* INPUT */
+      .input-hl {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--dark-border);
+        border-radius: 8px;
+        padding: 11px 14px;
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.9);
+        width: 100%;
+        transition: all 0.2s;
+        font-family: 'Sora', sans-serif;
+      }
+      .input-hl::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+      }
+      .input-hl:focus {
+        outline: none;
+        border-color: var(--primary);
+        background: rgba(13, 148, 136, 0.08);
+        box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+      }
+      label.hl {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 6px;
+        display: block;
+      }
+
+      /* MISC */
+      .section-pad {
+        padding: 80px 0;
+      }
+      @media (max-width: 768px) {
+        .hero-stats-row {
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+        .hero-stat {
+          border-right: none;
+          padding-right: 0;
+          margin-right: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar-hl">
+      <div class="container">
+        <div class="d-flex align-items-center justify-content-between w-100">
+          <a href="#" style="text-decoration: none"
+            ><span class="brand-hl">Harvest<span>Link</span></span></a
+          >
+          <div class="d-none d-lg-flex align-items-center gap-1">
+            <a href="#" class="nav-hl-link text-decoration-none">Home</a>
+            <a href="#" class="nav-hl-link text-decoration-none">Marketplace</a>
+            <a href="#" class="nav-hl-link text-decoration-none">Farmers</a>
+            <a href="#" class="nav-hl-link text-decoration-none">Categories</a>
+            <a href="#" class="nav-hl-link text-decoration-none">About</a>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <span style="position: relative; cursor: pointer">
+              <i class="bi bi-bag" style="font-size: 1.3rem; color: rgba(255, 255, 255, 0.7)"></i>
+              <span
+                style="
+                  position: absolute;
+                  top: -6px;
+                  right: -8px;
+                  background: var(--primary);
+                  color: #fff;
+                  width: 18px;
+                  height: 18px;
+                  border-radius: 50%;
+                  font-size: 0.65rem;
+                  font-weight: 700;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                "
+                >3</span
+              >
+            </span>
+            <a href="#" class="btn-ghost-hl text-decoration-none">Sign In</a>
+            <a href="#" class="btn-primary-hl text-decoration-none">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-hl">
+      <div class="container position-relative" style="z-index: 1">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <div class="hero-hl-tag">
+              <div class="live-dot"></div>
+              Live Marketplace — 24 farmers active now
+            </div>
+            <h1 class="hero-hl-title">
+              The Future of<br /><span class="teal">Farm</span>-to-<span class="amber">Table</span
+              ><br />Commerce
+            </h1>
+            <p class="hero-hl-sub">
+              Cut out the middlemen. Connect farmers directly with customers. Real-time produce,
+              honest prices, transparent sourcing.
+            </p>
+            <div class="d-flex gap-3 flex-wrap">
+              <a href="#" class="btn-accent-hl text-decoration-none d-inline-block">
+                <i class="bi bi-search me-2"></i>Explore Marketplace
+              </a>
+              <a href="#" class="btn-ghost-hl text-decoration-none d-inline-block">
+                <i class="bi bi-person-plus me-2"></i>Farmer Sign Up
+              </a>
+            </div>
+            <div class="hero-stats-row">
+              <div class="hero-stat">
+                <div class="hero-stat-n">1,200+</div>
+                <div class="hero-stat-l">Verified Farmers</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-n">8,500+</div>
+                <div class="hero-stat-l">Happy Customers</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-n">320+</div>
+                <div class="hero-stat-l">Products Listed</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="hero-img-hl position-relative">
+              <img
+                src="https://images.pexels.com/photos/1656663/pexels-photo-1656663.jpeg?auto=compress&cs=tinysrgb&w=800"
+                alt="Fresh farm"
+                style="width: 100%; height: 420px; object-fit: cover"
+              />
+              <div class="hero-glass-card">
+                <div class="live-dot"></div>
+                <div style="flex: 1">
+                  <div style="font-size: 0.72rem; color: var(--text-muted)">
+                    JUST LISTED — 2 minutes ago
+                  </div>
+                  <div style="font-size: 0.9rem; font-weight: 700">
+                    Fresh Spinach — Amit Verma, Nashik
+                  </div>
+                  <div style="font-size: 0.78rem; color: var(--primary-mid)">
+                    80 kg available · ₹22/kg
+                  </div>
+                </div>
+                <div
+                  style="
+                    background: rgba(13, 148, 136, 0.15);
+                    border: 1px solid rgba(13, 148, 136, 0.3);
+                    border-radius: 8px;
+                    padding: 8px 14px;
+                    font-size: 0.82rem;
+                    font-weight: 700;
+                    color: var(--primary-mid);
+                    cursor: pointer;
+                    white-space: nowrap;
+                  "
+                >
+                  Buy Now
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEARCH -->
+    <div class="search-hl-wrap">
+      <div class="container">
+        <div class="row g-3 align-items-center">
+          <div class="col-12 col-md-5 position-relative">
+            <i
+              class="bi bi-search"
+              style="
+                position: absolute;
+                left: 28px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: rgba(255, 255, 255, 0.3);
+                z-index: 1;
+              "
+            ></i>
+            <input
+              type="text"
+              class="search-hl"
+              placeholder="Search products — potato, tomato, wheat..."
+              style="padding-left: 44px"
+            />
+          </div>
+          <div class="col-6 col-md-2">
+            <select class="select-hl">
+              <option>All Categories</option>
+              <option>Vegetables</option>
+              <option>Fruits</option>
+              <option>Grains</option>
+              <option>Herbs & Spices</option>
+            </select>
+          </div>
+          <div class="col-6 col-md-2">
+            <select class="select-hl">
+              <option>All Locations</option>
+              <option>Punjab</option>
+              <option>Uttar Pradesh</option>
+              <option>Haryana</option>
+              <option>Maharashtra</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-3">
+            <button class="search-btn-hl w-100"><i class="bi bi-search me-2"></i>Search</button>
+          </div>
+        </div>
+        <div class="d-flex gap-2 flex-wrap mt-3">
+          <span style="font-size: 0.75rem; color: var(--text-muted); padding-top: 2px"
+            >Trending:</span
+          >
+          <span class="tag-hl">🥔 Potato</span>
+          <span class="tag-hl">🌿 Coriander</span>
+          <span class="tag-hl">🍅 Tomato</span>
+          <span class="tag-hl">🧅 Onion</span>
+          <span class="tag-hl">🌾 Wheat</span>
+          <span class="tag-hl">🌽 Corn</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="label-hl">Browse by Type</div>
+          <h2 class="title-hl">All Categories</h2>
+        </div>
+        <div class="row g-3">
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="cat-hl">
+              <div class="cat-hl-icon">🥦</div>
+              <div class="cat-hl-name">Vegetables</div>
+              <div class="cat-hl-count">128 products</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="cat-hl">
+              <div class="cat-hl-icon">🍎</div>
+              <div class="cat-hl-name">Fruits</div>
+              <div class="cat-hl-count">84 products</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="cat-hl">
+              <div class="cat-hl-icon">🌾</div>
+              <div class="cat-hl-name">Grains</div>
+              <div class="cat-hl-count">56 products</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="cat-hl">
+              <div class="cat-hl-icon">🌿</div>
+              <div class="cat-hl-name">Herbs</div>
+              <div class="cat-hl-count">42 products</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="cat-hl">
+              <div class="cat-hl-icon">🥛</div>
+              <div class="cat-hl-name">Dairy</div>
+              <div class="cat-hl-count">30 products</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <div class="cat-hl">
+              <div class="cat-hl-icon">🌶️</div>
+              <div class="cat-hl-name">Spices</div>
+              <div class="cat-hl-count">38 products</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT LISTING -->
+    <section class="section-pad pt-0">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
+          <div>
+            <div class="label-hl">3 results for "Potato"</div>
+            <h2 class="title-hl mb-0">Farmers Selling Potato</h2>
+          </div>
+          <div class="d-flex gap-2 align-items-center">
+            <span style="font-size: 0.8rem; color: var(--text-muted)">Sort:</span>
+            <select class="select-hl" style="width: auto">
+              <option>Price: Low → High</option>
+              <option>Nearest First</option>
+              <option>Top Rated</option>
+            </select>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-sm-6 col-lg-3">
+            <div class="prod-hl">
+              <div class="prod-hl-img">
+                <img
+                  src="https://images.pexels.com/photos/144248/potatoes-vegetables-erdfrucht-bio-144248.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  alt="Potato"
+                />
+                <div class="prod-hl-overlay"></div>
+                <div class="prod-hl-badge">Fresh</div>
+              </div>
+              <div class="prod-hl-body">
+                <div class="prod-hl-cat">Vegetables</div>
+                <div class="prod-hl-name">Desi Potato (Aloo)</div>
+                <div class="prod-hl-farmer">
+                  <div class="farmer-chip">RK</div>
+                  <div>
+                    <div
+                      style="color: rgba(255, 255, 255, 0.8); font-weight: 600; font-size: 0.8rem"
+                    >
+                      Raju Kumar
+                    </div>
+                    <div>
+                      <i
+                        class="bi bi-geo-alt-fill"
+                        style="color: var(--primary-mid); font-size: 0.65rem"
+                      ></i>
+                      Ludhiana, Punjab
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <span class="prod-hl-price">₹24</span><span class="prod-hl-unit"> /kg</span>
+                  </div>
+                  <span style="font-size: 0.75rem"
+                    ><i class="bi bi-star-fill" style="color: var(--accent)"></i>
+                    <span style="color: rgba(255, 255, 255, 0.7)">4.8</span></span
+                  >
+                </div>
+                <div class="prod-hl-meta">
+                  <i class="bi bi-box-seam me-1"></i>50 kg available &nbsp;|&nbsp;
+                  <i class="bi bi-geo-alt me-1"></i>12 km
+                </div>
+                <button class="btn-cart-hl"><i class="bi bi-cart-plus me-1"></i>Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="prod-hl">
+              <div class="prod-hl-img">
+                <img
+                  src="https://images.pexels.com/photos/144248/potatoes-vegetables-erdfrucht-bio-144248.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  alt="Potato"
+                />
+                <div class="prod-hl-overlay"></div>
+                <div class="prod-hl-badge" style="background: var(--success)">Organic</div>
+              </div>
+              <div class="prod-hl-body">
+                <div class="prod-hl-cat">Vegetables</div>
+                <div class="prod-hl-name">Red Potato (Lal Aloo)</div>
+                <div class="prod-hl-farmer">
+                  <div
+                    class="farmer-chip"
+                    style="background: linear-gradient(135deg, #15803d, #22c55e)"
+                  >
+                    MS
+                  </div>
+                  <div>
+                    <div
+                      style="color: rgba(255, 255, 255, 0.8); font-weight: 600; font-size: 0.8rem"
+                    >
+                      Mahesh Singh
+                    </div>
+                    <div>
+                      <i
+                        class="bi bi-geo-alt-fill"
+                        style="color: var(--primary-mid); font-size: 0.65rem"
+                      ></i>
+                      Agra, UP
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <span class="prod-hl-price">₹32</span><span class="prod-hl-unit"> /kg</span>
+                  </div>
+                  <span style="font-size: 0.75rem"
+                    ><i class="bi bi-star-fill" style="color: var(--accent)"></i>
+                    <span style="color: rgba(255, 255, 255, 0.7)">4.6</span></span
+                  >
+                </div>
+                <div class="prod-hl-meta">
+                  <i class="bi bi-box-seam me-1"></i>80 kg available &nbsp;|&nbsp;
+                  <i class="bi bi-geo-alt me-1"></i>28 km
+                </div>
+                <button class="btn-cart-hl"><i class="bi bi-cart-plus me-1"></i>Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="prod-hl">
+              <div class="prod-hl-img">
+                <img
+                  src="https://images.pexels.com/photos/5945558/pexels-photo-5945558.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  alt="Coriander"
+                />
+                <div class="prod-hl-overlay"></div>
+                <div class="prod-hl-badge" style="background: var(--info)">Seasonal</div>
+              </div>
+              <div class="prod-hl-body">
+                <div class="prod-hl-cat">Herbs</div>
+                <div class="prod-hl-name">Fresh Coriander (Dhaniya)</div>
+                <div class="prod-hl-farmer">
+                  <div
+                    class="farmer-chip"
+                    style="background: linear-gradient(135deg, #0369a1, #38bdf8)"
+                  >
+                    AV
+                  </div>
+                  <div>
+                    <div
+                      style="color: rgba(255, 255, 255, 0.8); font-weight: 600; font-size: 0.8rem"
+                    >
+                      Amit Verma
+                    </div>
+                    <div>
+                      <i
+                        class="bi bi-geo-alt-fill"
+                        style="color: var(--primary-mid); font-size: 0.65rem"
+                      ></i>
+                      Nashik, MH
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <span class="prod-hl-price">₹18</span><span class="prod-hl-unit"> /bunch</span>
+                  </div>
+                  <span style="font-size: 0.75rem"
+                    ><i class="bi bi-star-fill" style="color: var(--accent)"></i>
+                    <span style="color: rgba(255, 255, 255, 0.7)">4.7</span></span
+                  >
+                </div>
+                <div class="prod-hl-meta">
+                  <i class="bi bi-box-seam me-1"></i>200 bunches &nbsp;|&nbsp;
+                  <i class="bi bi-geo-alt me-1"></i>8 km
+                </div>
+                <button class="btn-cart-hl"><i class="bi bi-cart-plus me-1"></i>Add to Cart</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="prod-hl">
+              <div class="prod-hl-img">
+                <img
+                  src="https://images.pexels.com/photos/533360/pexels-photo-533360.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  alt="Tomato"
+                />
+                <div class="prod-hl-overlay"></div>
+                <div class="prod-hl-badge" style="background: var(--accent); color: #000">
+                  Best Value
+                </div>
+              </div>
+              <div class="prod-hl-body">
+                <div class="prod-hl-cat">Vegetables</div>
+                <div class="prod-hl-name">Cherry Tomato</div>
+                <div class="prod-hl-farmer">
+                  <div
+                    class="farmer-chip"
+                    style="background: linear-gradient(135deg, #be123c, #f43f5e)"
+                  >
+                    PD
+                  </div>
+                  <div>
+                    <div
+                      style="color: rgba(255, 255, 255, 0.8); font-weight: 600; font-size: 0.8rem"
+                    >
+                      Priya Devi
+                    </div>
+                    <div>
+                      <i
+                        class="bi bi-geo-alt-fill"
+                        style="color: var(--primary-mid); font-size: 0.65rem"
+                      ></i>
+                      Karnal, HR
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <span class="prod-hl-price">₹45</span><span class="prod-hl-unit"> /kg</span>
+                  </div>
+                  <span style="font-size: 0.75rem"
+                    ><i class="bi bi-star-fill" style="color: var(--accent)"></i>
+                    <span style="color: rgba(255, 255, 255, 0.7)">4.9</span></span
+                  >
+                </div>
+                <div class="prod-hl-meta">
+                  <i class="bi bi-box-seam me-1"></i>60 kg available &nbsp;|&nbsp;
+                  <i class="bi bi-geo-alt me-1"></i>35 km
+                </div>
+                <button class="btn-cart-hl"><i class="bi bi-cart-plus me-1"></i>Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CART SECTION -->
+    <section class="section-pad pt-0">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="label-hl">Smart Order Splitting</div>
+          <h2 class="title-hl">Your Cart — Orders Go to Right Farmers</h2>
+          <p
+            style="
+              color: var(--text-muted);
+              max-width: 500px;
+              margin: 12px auto 0;
+              font-size: 0.9rem;
+            "
+          >
+            One cart, multiple farmers. Each farmer receives only their product order automatically.
+          </p>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-7">
+            <div class="cart-hl">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 20px;
+                "
+              >
+                <h5
+                  style="
+                    font-family: 'Crimson Pro', serif;
+                    font-size: 1.3rem;
+                    font-weight: 700;
+                    color: #fff;
+                    margin: 0;
+                  "
+                >
+                  <i class="bi bi-bag-heart me-2" style="color: var(--primary-mid)"></i>Cart (3
+                  items)
+                </h5>
+                <span style="font-size: 0.78rem; color: var(--text-muted)">3 separate orders</span>
+              </div>
+              <div class="cart-item-hl">
+                <div class="cart-img-hl">
+                  <img
+                    src="https://images.pexels.com/photos/144248/potatoes-vegetables-erdfrucht-bio-144248.jpeg?auto=compress&cs=tinysrgb&w=200"
+                    alt=""
+                  />
+                </div>
+                <div style="flex: 1">
+                  <div style="font-weight: 700; font-size: 0.88rem; color: #fff">Desi Potato</div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted)">
+                    Raju Kumar · Punjab
+                  </div>
+                  <span class="order-to-badge ot-1">Order → Raju Kumar</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px">
+                  <div class="qty-btn-hl">−</div>
+                  <span style="font-weight: 700; color: #fff; min-width: 20px; text-align: center"
+                    >2</span
+                  >
+                  <div class="qty-btn-hl">+</div>
+                  <span style="font-size: 0.72rem; color: var(--text-muted)">kg</span>
+                </div>
+                <span
+                  style="
+                    font-weight: 800;
+                    color: var(--primary-mid);
+                    min-width: 50px;
+                    text-align: right;
+                    font-family: 'Crimson Pro', serif;
+                    font-size: 1.1rem;
+                  "
+                  >₹48</span
+                >
+              </div>
+              <div class="cart-item-hl">
+                <div class="cart-img-hl">
+                  <img
+                    src="https://images.pexels.com/photos/5945558/pexels-photo-5945558.jpeg?auto=compress&cs=tinysrgb&w=200"
+                    alt=""
+                  />
+                </div>
+                <div style="flex: 1">
+                  <div style="font-weight: 700; font-size: 0.88rem; color: #fff">
+                    Fresh Coriander
+                  </div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted)">
+                    Amit Verma · Maharashtra
+                  </div>
+                  <span class="order-to-badge ot-2">Order → Amit Verma</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px">
+                  <div class="qty-btn-hl">−</div>
+                  <span style="font-weight: 700; color: #fff; min-width: 20px; text-align: center"
+                    >3</span
+                  >
+                  <div class="qty-btn-hl">+</div>
+                  <span style="font-size: 0.72rem; color: var(--text-muted)">bunch</span>
+                </div>
+                <span
+                  style="
+                    font-weight: 800;
+                    color: var(--primary-mid);
+                    min-width: 50px;
+                    text-align: right;
+                    font-family: 'Crimson Pro', serif;
+                    font-size: 1.1rem;
+                  "
+                  >₹54</span
+                >
+              </div>
+              <div class="cart-item-hl">
+                <div class="cart-img-hl">
+                  <img
+                    src="https://images.pexels.com/photos/533360/pexels-photo-533360.jpeg?auto=compress&cs=tinysrgb&w=200"
+                    alt=""
+                  />
+                </div>
+                <div style="flex: 1">
+                  <div style="font-weight: 700; font-size: 0.88rem; color: #fff">Cherry Tomato</div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted)">
+                    Priya Devi · Haryana
+                  </div>
+                  <span class="order-to-badge ot-3">Order → Priya Devi</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px">
+                  <div class="qty-btn-hl">−</div>
+                  <span style="font-weight: 700; color: #fff; min-width: 20px; text-align: center"
+                    >1</span
+                  >
+                  <div class="qty-btn-hl">+</div>
+                  <span style="font-size: 0.72rem; color: var(--text-muted)">kg</span>
+                </div>
+                <span
+                  style="
+                    font-weight: 800;
+                    color: var(--primary-mid);
+                    min-width: 50px;
+                    text-align: right;
+                    font-family: 'Crimson Pro', serif;
+                    font-size: 1.1rem;
+                  "
+                  >₹45</span
+                >
+              </div>
+              <div
+                style="
+                  background: rgba(13, 148, 136, 0.08);
+                  border: 1px solid rgba(13, 148, 136, 0.2);
+                  border-radius: 10px;
+                  padding: 14px;
+                  margin-top: 16px;
+                "
+              >
+                <div
+                  style="
+                    font-size: 0.78rem;
+                    font-weight: 700;
+                    color: var(--primary-mid);
+                    margin-bottom: 6px;
+                  "
+                >
+                  <i class="bi bi-info-circle me-1"></i>Auto-Split Ordering
+                </div>
+                <div style="font-size: 0.78rem; color: var(--text-muted)">
+                  Your cart splits into 3 independent orders — Raju Kumar gets potato order, Amit
+                  Verma gets coriander order, Priya Devi gets tomato order.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="summary-hl">
+              <h5
+                style="
+                  font-family: 'Crimson Pro', serif;
+                  font-size: 1.2rem;
+                  font-weight: 700;
+                  color: #fff;
+                  margin-bottom: 20px;
+                "
+              >
+                Order Summary
+              </h5>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  font-size: 0.88rem;
+                  margin-bottom: 10px;
+                "
+              >
+                <span style="color: var(--text-muted)">Subtotal</span
+                ><span style="color: #fff; font-weight: 600">₹147</span>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  font-size: 0.88rem;
+                  margin-bottom: 10px;
+                "
+              >
+                <span style="color: var(--text-muted)">Delivery</span
+                ><span style="color: var(--success); font-weight: 600">Free</span>
+              </div>
+              <hr style="border-color: var(--dark-border-soft)" />
+              <div style="display: flex; justify-content: space-between; margin-bottom: 24px">
+                <span style="font-weight: 700; color: #fff">Total</span>
+                <span
+                  style="
+                    font-family: 'Crimson Pro', serif;
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    color: var(--primary-mid);
+                  "
+                  >₹147</span
+                >
+              </div>
+              <div
+                style="
+                  background: var(--dark-card-2);
+                  border: 1px solid var(--dark-border-soft);
+                  border-radius: 12px;
+                  padding: 16px;
+                  margin-bottom: 20px;
+                "
+              >
+                <div
+                  style="
+                    font-size: 0.78rem;
+                    font-weight: 700;
+                    color: rgba(255, 255, 255, 0.6);
+                    margin-bottom: 12px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                  "
+                >
+                  Orders Breakdown
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: 0.8rem;
+                    margin-bottom: 8px;
+                  "
+                >
+                  <span style="color: var(--primary-mid)"
+                    ><i class="bi bi-person-fill me-1"></i>Raju Kumar</span
+                  >
+                  <span style="color: rgba(255, 255, 255, 0.8); font-weight: 600"
+                    >Potato × 2 kg · ₹48</span
+                  >
+                </div>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: 0.8rem;
+                    margin-bottom: 8px;
+                  "
+                >
+                  <span style="color: var(--info)"
+                    ><i class="bi bi-person-fill me-1"></i>Amit Verma</span
+                  >
+                  <span style="color: rgba(255, 255, 255, 0.8); font-weight: 600"
+                    >Coriander × 3 · ₹54</span
+                  >
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem">
+                  <span style="color: var(--accent)"
+                    ><i class="bi bi-person-fill me-1"></i>Priya Devi</span
+                  >
+                  <span style="color: rgba(255, 255, 255, 0.8); font-weight: 600"
+                    >Tomato × 1 kg · ₹45</span
+                  >
+                </div>
+              </div>
+              <button class="place-order-btn">
+                <i class="bi bi-bag-check me-2"></i>Place Order — ₹147
+              </button>
+              <div
+                style="
+                  text-align: center;
+                  margin-top: 12px;
+                  font-size: 0.75rem;
+                  color: var(--text-muted);
+                "
+              >
+                <i class="bi bi-shield-check me-1" style="color: var(--success)"></i>Secure · No
+                payment for MVP
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-hl section-pad">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="label-hl">Simple Process</div>
+          <h2 class="title-hl">How HarvestLink Works</h2>
+        </div>
+        <div class="row g-3">
+          <div class="col-6 col-md-3">
+            <div class="step-hl">
+              <div class="step-hl-num">01</div>
+              <div class="step-hl-icon">🏛️</div>
+              <div class="step-hl-title">Admin Creates Catalog</div>
+              <div class="step-hl-desc">
+                Super Admin sets up product categories and master product data.
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="step-hl">
+              <div class="step-hl-num">02</div>
+              <div class="step-hl-icon">👨‍🌾</div>
+              <div class="step-hl-title">Farmer Lists Produce</div>
+              <div class="step-hl-desc">
+                Farmer registers and lists their produce with quantity and price.
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="step-hl">
+              <div class="step-hl-num">03</div>
+              <div class="step-hl-icon">🛒</div>
+              <div class="step-hl-title">Customer Orders</div>
+              <div class="step-hl-desc">
+                Customer searches, adds to cart, and places multi-farmer order.
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="step-hl">
+              <div class="step-hl-num">04</div>
+              <div class="step-hl-icon">✅</div>
+              <div class="step-hl-title">Farmer Delivers</div>
+              <div class="step-hl-desc">
+                Each farmer delivers and marks their order complete independently.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FARMER DASHBOARD PREVIEW -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-5">
+            <div class="label-hl">Farmer Portal</div>
+            <h2 class="title-hl">Everything a Farmer Needs</h2>
+            <p
+              style="
+                color: var(--text-muted);
+                line-height: 1.75;
+                margin: 16px 0 24px;
+                font-size: 0.9rem;
+              "
+            >
+              A clean, simple dashboard built for farmers. List products, track incoming orders, and
+              mark deliveries — no complexity.
+            </p>
+            <div class="d-flex flex-column gap-3">
+              <div style="display: flex; gap: 12px; align-items: flex-start">
+                <div
+                  style="
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 8px;
+                    background: rgba(13, 148, 136, 0.12);
+                    border: 1px solid rgba(13, 148, 136, 0.2);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                  "
+                >
+                  <i class="bi bi-plus-circle" style="color: var(--primary-mid)"></i>
+                </div>
+                <div>
+                  <div style="font-weight: 700; font-size: 0.88rem; color: #fff">
+                    List Your Products
+                  </div>
+                  <div style="font-size: 0.8rem; color: var(--text-muted)">
+                    Pick from admin-created products and set your quantity and price.
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 12px; align-items: flex-start">
+                <div
+                  style="
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 8px;
+                    background: rgba(245, 158, 11, 0.12);
+                    border: 1px solid rgba(245, 158, 11, 0.2);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                  "
+                >
+                  <i class="bi bi-bell" style="color: var(--accent)"></i>
+                </div>
+                <div>
+                  <div style="font-weight: 700; font-size: 0.88rem; color: #fff">
+                    Receive Orders Instantly
+                  </div>
+                  <div style="font-size: 0.8rem; color: var(--text-muted)">
+                    Get notified the moment a customer orders your product.
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 12px; align-items: flex-start">
+                <div
+                  style="
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 8px;
+                    background: rgba(16, 185, 129, 0.12);
+                    border: 1px solid rgba(16, 185, 129, 0.2);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                  "
+                >
+                  <i class="bi bi-check2-all" style="color: var(--success)"></i>
+                </div>
+                <div>
+                  <div style="font-weight: 700; font-size: 0.88rem; color: #fff">
+                    One-Tap Delivery
+                  </div>
+                  <div style="font-size: 0.8rem; color: var(--text-muted)">
+                    Mark orders as delivered in one click. Simple and efficient.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="#" class="btn-primary-hl text-decoration-none d-inline-block mt-4">
+              <i class="bi bi-person-plus me-2"></i>Register as Farmer
+            </a>
+          </div>
+          <div class="col-lg-7">
+            <div
+              style="
+                background: var(--dark-card);
+                border: 1px solid var(--dark-border-soft);
+                border-radius: 20px;
+                overflow: hidden;
+              "
+            >
+              <div
+                style="
+                  background: linear-gradient(135deg, var(--primary-darker), var(--primary-dark));
+                  padding: 16px 20px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                "
+              >
+                <span
+                  style="
+                    font-family: 'Crimson Pro', serif;
+                    font-size: 1.1rem;
+                    font-weight: 700;
+                    color: #fff;
+                  "
+                  >HarvestLink <span style="color: var(--primary-mid)">Farmer</span></span
+                >
+                <div style="display: flex; gap: 8px; align-items: center">
+                  <div class="live-dot"></div>
+                  <span style="font-size: 0.78rem; color: rgba(255, 255, 255, 0.7)"
+                    >Raju Kumar — Online</span
+                  >
+                </div>
+              </div>
+              <div class="row g-0">
+                <div class="col-3">
+                  <div class="dash-sidebar">
+                    <div class="dash-item active"><i class="bi bi-grid-1x2"></i> Dashboard</div>
+                    <div class="dash-item"><i class="bi bi-basket3"></i> Products</div>
+                    <div class="dash-item"><i class="bi bi-receipt-cutoff"></i> Orders</div>
+                    <div class="dash-item"><i class="bi bi-check2-square"></i> Delivered</div>
+                    <div class="dash-item"><i class="bi bi-person-circle"></i> Profile</div>
+                  </div>
+                </div>
+                <div class="col-9" style="padding: 20px; background: var(--dark-bg)">
+                  <div class="row g-3 mb-4">
+                    <div class="col-4">
+                      <div class="metric-hl">
+                        <div class="metric-num">12</div>
+                        <div class="metric-label">Products</div>
+                        <div class="metric-change">↑ 3 new</div>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="metric-hl">
+                        <div class="metric-num" style="color: var(--accent)">8</div>
+                        <div class="metric-label">Pending</div>
+                        <div class="metric-change" style="color: var(--accent)">Action needed</div>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="metric-hl">
+                        <div class="metric-num" style="color: var(--success)">24</div>
+                        <div class="metric-label">Delivered</div>
+                        <div class="metric-change">All time</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style="
+                      font-size: 0.75rem;
+                      font-weight: 700;
+                      color: var(--text-muted);
+                      text-transform: uppercase;
+                      letter-spacing: 1px;
+                      margin-bottom: 10px;
+                    "
+                  >
+                    Recent Orders
+                  </div>
+                  <div class="order-hl">
+                    <div>
+                      <div style="font-size: 0.8rem; font-weight: 700; color: #fff">
+                        Potato × 2 kg
+                      </div>
+                      <div style="font-size: 0.72rem; color: var(--text-muted)">Rahul Sharma</div>
+                    </div>
+                    <span class="status-hl sh-pending">Pending</span>
+                  </div>
+                  <div class="order-hl">
+                    <div>
+                      <div style="font-size: 0.8rem; font-weight: 700; color: #fff">
+                        Onion × 5 kg
+                      </div>
+                      <div style="font-size: 0.72rem; color: var(--text-muted)">Neha Gupta</div>
+                    </div>
+                    <span class="status-hl sh-processing">Processing</span>
+                  </div>
+                  <div class="order-hl">
+                    <div>
+                      <div style="font-size: 0.8rem; font-weight: 700; color: #fff">
+                        Tomato × 3 kg
+                      </div>
+                      <div style="font-size: 0.72rem; color: var(--text-muted)">Vikram Patel</div>
+                    </div>
+                    <span class="status-hl sh-delivered">Delivered</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROLES SECTION -->
+    <section
+      class="section-pad"
+      style="
+        background: var(--dark-card);
+        border-top: 1px solid var(--dark-border-soft);
+        border-bottom: 1px solid var(--dark-border-soft);
+      "
+    >
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="label-hl">4 User Roles</div>
+          <h2 class="title-hl">One Platform, Multiple Portals</h2>
+          <p
+            style="
+              color: var(--text-muted);
+              max-width: 480px;
+              margin: 12px auto 0;
+              font-size: 0.88rem;
+            "
+          >
+            Each user type has a dedicated login and dashboard with exactly the tools they need.
+          </p>
+        </div>
+        <div class="row g-4">
+          <div class="col-sm-6 col-lg-3">
+            <div class="role-hl r-admin">
+              <div class="role-hl-icon ri-admin">
+                <i class="bi bi-shield-lock-fill" style="color: #f43f5e; font-size: 1.4rem"></i>
+              </div>
+              <div class="role-hl-title">Super Admin</div>
+              <div class="role-hl-desc">
+                Full platform control — manage categories, products, and all users.
+              </div>
+              <div class="role-hl-feat">
+                <i class="bi bi-check-circle-fill"></i> Manage All Categories
+              </div>
+              <div class="role-hl-feat">
+                <i class="bi bi-check-circle-fill"></i> Create & Edit Products
+              </div>
+              <div class="role-hl-feat">
+                <i class="bi bi-check-circle-fill"></i> User Management
+              </div>
+              <div class="role-hl-feat">
+                <i class="bi bi-check-circle-fill"></i> Platform Analytics
+              </div>
+              <a href="#" class="btn-role-hl br-admin">Admin Login →</a>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="role-hl r-farmer">
+              <div class="role-hl-icon ri-farmer">
+                <i class="bi bi-flower1" style="color: #10b981; font-size: 1.4rem"></i>
+              </div>
+              <div class="role-hl-title">Farmer</div>
+              <div class="role-hl-desc">
+                List your produce, receive orders, and mark deliveries complete.
+              </div>
+              <div class="role-hl-feat"><i class="bi bi-check-circle-fill"></i> List Products</div>
+              <div class="role-hl-feat">
+                <i class="bi bi-check-circle-fill"></i> Set Price & Quantity
+              </div>
+              <div class="role-hl-feat"><i class="bi bi-check-circle-fill"></i> Manage Orders</div>
+              <div class="role-hl-feat">
+                <i class="bi bi-check-circle-fill"></i> Mark as Delivered
+              </div>
+              <a href="#" class="btn-role-hl br-farmer">Farmer Login →</a>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="role-hl r-customer">
+              <div class="role-hl-icon ri-customer">
+                <i class="bi bi-person-heart" style="color: #38bdf8; font-size: 1.4rem"></i>
+              </div>
+              <div class="role-hl-title">Customer</div>
+              <div class="role-hl-desc">
+                Search fresh produce, add to cart, and order from multiple farmers at once.
+              </div>
+              <div class="role-hl-feat">
+                <i class="bi bi-check-circle-fill"></i> Search & Browse
+              </div>
+              <div class="role-hl-feat">
+                <i class="bi bi-check-circle-fill"></i> Multi-Farmer Cart
+              </div>
+              <div class="role-hl-feat"><i class="bi bi-check-circle-fill"></i> Track Orders</div>
+              <div class="role-hl-feat"><i class="bi bi-check-circle-fill"></i> Order History</div>
+              <a href="#" class="btn-role-hl br-customer">Customer Login →</a>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="role-hl r-creator">
+              <div class="role-hl-icon ri-creator">
+                <i class="bi bi-pencil-fill" style="color: #f59e0b; font-size: 1.4rem"></i>
+              </div>
+              <div class="role-hl-title">Product Creator</div>
+              <div class="role-hl-desc">
+                Manage the product catalog — add items, descriptions, and category mapping.
+              </div>
+              <div class="role-hl-feat">
+                <i class="bi bi-check-circle-fill"></i> Add New Products
+              </div>
+              <div class="role-hl-feat">
+                <i class="bi bi-check-circle-fill"></i> Edit Descriptions
+              </div>
+              <div class="role-hl-feat">
+                <i class="bi bi-check-circle-fill"></i> Manage Categories
+              </div>
+              <div class="role-hl-feat"><i class="bi bi-check-circle-fill"></i> Product Images</div>
+              <a href="#" class="btn-role-hl br-creator">Creator Login →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FARMERS -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="label-hl">Our Network</div>
+          <h2 class="title-hl">Featured Farmers</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-sm-6 col-lg-3">
+            <div class="farmer-hl">
+              <div
+                class="farmer-hl-header"
+                style="background: linear-gradient(135deg, var(--primary-darker), var(--primary))"
+              ></div>
+              <div class="farmer-hl-av">RK</div>
+              <div class="farmer-hl-body">
+                <div class="farmer-hl-name">Raju Kumar</div>
+                <div class="farmer-hl-loc">
+                  <i class="bi bi-geo-alt me-1" style="color: var(--primary-mid)"></i>Ludhiana,
+                  Punjab
+                </div>
+                <div>
+                  <span class="crop-tag">Potato</span><span class="crop-tag">Onion</span
+                  ><span class="crop-tag">Wheat</span>
+                </div>
+                <div class="farmer-hl-stats">
+                  <div class="fstat">
+                    <div class="fstat-n">4.8</div>
+                    <div class="fstat-l">Rating</div>
+                  </div>
+                  <div class="fstat">
+                    <div class="fstat-n">124</div>
+                    <div class="fstat-l">Orders</div>
+                  </div>
+                  <div class="fstat">
+                    <div class="fstat-n">8</div>
+                    <div class="fstat-l">Products</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="farmer-hl">
+              <div
+                class="farmer-hl-header"
+                style="background: linear-gradient(135deg, #15803d, #22c55e)"
+              ></div>
+              <div
+                class="farmer-hl-av"
+                style="background: linear-gradient(135deg, #15803d, #22c55e)"
+              >
+                MS
+              </div>
+              <div class="farmer-hl-body">
+                <div class="farmer-hl-name">Mahesh Singh</div>
+                <div class="farmer-hl-loc">
+                  <i class="bi bi-geo-alt me-1" style="color: var(--primary-mid)"></i>Agra, Uttar
+                  Pradesh
+                </div>
+                <div>
+                  <span class="crop-tag">Red Potato</span><span class="crop-tag">Carrot</span>
+                </div>
+                <div class="farmer-hl-stats">
+                  <div class="fstat">
+                    <div class="fstat-n">4.6</div>
+                    <div class="fstat-l">Rating</div>
+                  </div>
+                  <div class="fstat">
+                    <div class="fstat-n">89</div>
+                    <div class="fstat-l">Orders</div>
+                  </div>
+                  <div class="fstat">
+                    <div class="fstat-n">6</div>
+                    <div class="fstat-l">Products</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="farmer-hl">
+              <div
+                class="farmer-hl-header"
+                style="background: linear-gradient(135deg, #0369a1, #38bdf8)"
+              ></div>
+              <div
+                class="farmer-hl-av"
+                style="background: linear-gradient(135deg, #0369a1, #38bdf8)"
+              >
+                PD
+              </div>
+              <div class="farmer-hl-body">
+                <div class="farmer-hl-name">Priya Devi</div>
+                <div class="farmer-hl-loc">
+                  <i class="bi bi-geo-alt me-1" style="color: var(--primary-mid)"></i>Karnal,
+                  Haryana
+                </div>
+                <div>
+                  <span class="crop-tag">Tomato</span><span class="crop-tag">Capsicum</span>
+                </div>
+                <div class="farmer-hl-stats">
+                  <div class="fstat">
+                    <div class="fstat-n">4.9</div>
+                    <div class="fstat-l">Rating</div>
+                  </div>
+                  <div class="fstat">
+                    <div class="fstat-n">208</div>
+                    <div class="fstat-l">Orders</div>
+                  </div>
+                  <div class="fstat">
+                    <div class="fstat-n">11</div>
+                    <div class="fstat-l">Products</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <div class="farmer-hl">
+              <div
+                class="farmer-hl-header"
+                style="background: linear-gradient(135deg, #d97706, #fbbf24)"
+              ></div>
+              <div
+                class="farmer-hl-av"
+                style="background: linear-gradient(135deg, #d97706, #fbbf24)"
+              >
+                AV
+              </div>
+              <div class="farmer-hl-body">
+                <div class="farmer-hl-name">Amit Verma</div>
+                <div class="farmer-hl-loc">
+                  <i class="bi bi-geo-alt me-1" style="color: var(--primary-mid)"></i>Nashik,
+                  Maharashtra
+                </div>
+                <div>
+                  <span class="crop-tag">Coriander</span><span class="crop-tag">Spinach</span>
+                </div>
+                <div class="farmer-hl-stats">
+                  <div class="fstat">
+                    <div class="fstat-n">4.7</div>
+                    <div class="fstat-l">Rating</div>
+                  </div>
+                  <div class="fstat">
+                    <div class="fstat-n">156</div>
+                    <div class="fstat-l">Orders</div>
+                  </div>
+                  <div class="fstat">
+                    <div class="fstat-n">9</div>
+                    <div class="fstat-l">Products</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section-pad pt-0">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="label-hl">Social Proof</div>
+          <h2 class="title-hl">What Our Users Say</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="testi-hl">
+              <div class="testi-stars">★★★★★</div>
+              <div class="testi-quote">
+                "Selling directly means I keep more of what I earn. My income has gone up
+                significantly since I started listing on HarvestLink."
+              </div>
+              <div class="testi-name">Raju Kumar</div>
+              <div class="testi-role">Potato Farmer, Punjab</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="testi-hl">
+              <div class="testi-stars">★★★★★</div>
+              <div class="testi-quote">
+                "I can order from three different farmers in one go. The produce arrives fresh the
+                same morning. Nothing like market vegetables."
+              </div>
+              <div class="testi-name">Rahul Sharma</div>
+              <div class="testi-role">Customer, New Delhi</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="testi-hl">
+              <div class="testi-stars">★★★★★</div>
+              <div class="testi-quote">
+                "As super admin, managing the entire platform is straightforward. Product catalog
+                setup took less than an hour."
+              </div>
+              <div class="testi-name">Vikram Patel</div>
+              <div class="testi-role">Platform Administrator</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section
+      style="
+        background: linear-gradient(
+          135deg,
+          var(--primary-darker) 0%,
+          #0d2424 50%,
+          var(--primary-darker) 100%
+        );
+        padding: 80px 0;
+        border-top: 1px solid var(--dark-border);
+        border-bottom: 1px solid var(--dark-border);
+        position: relative;
+        overflow: hidden;
+      "
+    >
+      <div
+        style="
+          position: absolute;
+          top: -100px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 600px;
+          height: 600px;
+          background: radial-gradient(circle, rgba(13, 148, 136, 0.1) 0%, transparent 60%);
+          border-radius: 50%;
+          pointer-events: none;
+        "
+      ></div>
+      <div class="container text-center position-relative">
+        <div
+          style="
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary-mid);
+            margin-bottom: 16px;
+          "
+        >
+          Start Today
+        </div>
+        <h2
+          style="
+            font-family: 'Crimson Pro', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #fff;
+            margin-bottom: 16px;
+          "
+        >
+          Ready to Join the<br />Farm-to-Table Revolution?
+        </h2>
+        <p
+          style="
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto 36px;
+            line-height: 1.75;
+            font-size: 0.95rem;
+          "
+        >
+          Whether you grow food or love fresh food — HarvestLink is built for you. Free to join, no
+          commission for MVP.
+        </p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+          <a
+            href="#"
+            class="btn-accent-hl text-decoration-none d-inline-block"
+            style="padding: 14px 32px"
+          >
+            <i class="bi bi-person-plus me-2"></i>Register as Farmer
+          </a>
+          <a
+            href="#"
+            class="btn-ghost-hl text-decoration-none d-inline-block"
+            style="padding: 14px 32px"
+          >
+            <i class="bi bi-bag me-2"></i>Shop Fresh Produce
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-hl">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="footer-hl-brand">Harvest<span>Link</span></div>
+            <p
+              style="
+                color: var(--text-muted);
+                font-size: 0.875rem;
+                line-height: 1.7;
+                max-width: 280px;
+                margin-top: 12px;
+              "
+            >
+              The modern farm-to-table marketplace. Connecting verified farmers directly with
+              customers for fresh, fair produce.
+            </p>
+            <div class="d-flex gap-2 mt-4">
+              <a href="#" class="social-btn"><i class="bi bi-twitter-x"></i></a>
+              <a href="#" class="social-btn"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="social-btn"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="social-btn"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+          <div class="col-sm-4 col-lg-2 offset-lg-1">
+            <div class="footer-hl-head">Platform</div>
+            <a href="#" class="footer-hl-link">Marketplace</a>
+            <a href="#" class="footer-hl-link">Farmers</a>
+            <a href="#" class="footer-hl-link">Categories</a>
+            <a href="#" class="footer-hl-link">About</a>
+          </div>
+          <div class="col-sm-4 col-lg-2">
+            <div class="footer-hl-head">For Farmers</div>
+            <a href="#" class="footer-hl-link">Register</a>
+            <a href="#" class="footer-hl-link">Dashboard</a>
+            <a href="#" class="footer-hl-link">List Products</a>
+            <a href="#" class="footer-hl-link">Manage Orders</a>
+          </div>
+          <div class="col-sm-4 col-lg-3">
+            <div class="footer-hl-head">Portals</div>
+            <a href="#" class="footer-hl-link"
+              ><i class="bi bi-shield-lock me-2" style="color: #f43f5e"></i>Super Admin</a
+            >
+            <a href="#" class="footer-hl-link"
+              ><i class="bi bi-flower1 me-2" style="color: var(--success)"></i>Farmer Portal</a
+            >
+            <a href="#" class="footer-hl-link"
+              ><i class="bi bi-person me-2" style="color: var(--info)"></i>Customer Portal</a
+            >
+            <a href="#" class="footer-hl-link"
+              ><i class="bi bi-pencil me-2" style="color: var(--accent)"></i>Creator Portal</a
+            >
+          </div>
+        </div>
+        <hr style="border-color: var(--dark-border-soft); margin: 40px 0 24px" />
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+          <div style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.3)">
+            © 2024 HarvestLink. All rights reserved.
+          </div>
+          <div class="d-flex gap-3">
+            <a href="#" class="footer-hl-link" style="font-size: 0.78rem">Privacy</a>
+            <a href="#" class="footer-hl-link" style="font-size: 0.78rem">Terms</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
