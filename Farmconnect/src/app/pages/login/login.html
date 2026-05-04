@@ -35,12 +35,20 @@
     <div class="form-wrapper">
       <!-- Tabs -->
       <div class="auth-tabs">
-        <button class="auth-tab active" id="tab-login" onclick="showTab('login')">Log In</button>
-        <button class="auth-tab" id="tab-register" onclick="showTab('register')">Sign Up</button>
+        <button class="auth-tab" [class.active]="activeTab === 'login'" (click)="showTab('login')">
+          Log In
+        </button>
+        <button
+          class="auth-tab"
+          [class.active]="activeTab === 'register'"
+          (click)="showTab('register')"
+        >
+          Sign Up
+        </button>
       </div>
 
       <!-- LOGIN FORM -->
-      <div class="auth-form active" id="form-login">
+      <div class="auth-form active" [class.active]="activeTab === 'login'" id="form-login">
         <h1 class="auth-title">Welcome Back</h1>
         <p class="auth-sub">Sign in to your FarmConnect account</p>
 
@@ -82,12 +90,12 @@
         </form>
 
         <p class="switch-text">
-          Don't have an account? <a href="#" onclick="showTab('register')">Sign up here</a>
+          Don't have an account? <a href="#" (click)="showTab('register')">Sign up here</a>
         </p>
       </div>
 
       <!-- REGISTER FORM -->
-      <div class="auth-form" id="form-register">
+      <div class="auth-form" [class.active]="activeTab === 'register'" id="form-register">
         <h1 class="auth-title">Create Account</h1>
         <p class="auth-sub">Join India's largest farm-to-table marketplace</p>
 
@@ -207,7 +215,7 @@
         </form>
 
         <p class="switch-text">
-          Already have an account? <a href="#" onclick="showTab('login')">Sign in</a>
+          Already have an account?<a href="#" (click)="showTab('login')">Sign in</a>
         </p>
       </div>
     </div>
