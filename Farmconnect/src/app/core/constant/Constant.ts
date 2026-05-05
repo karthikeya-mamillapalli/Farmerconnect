@@ -1,8 +1,9 @@
 import { REQUIRED } from "@angular/forms/signals";
 
 export const GlobalConst ={
+   LOCAL_LOGIN_KEY:"farmerLoginData",
     API_ENDPOINTS:{
-        LOGIN:'login',
+        LOGIN:'farmerUsers/login',
         GET_USER_BY_ID:'getUser?id='
     },
 
@@ -11,3 +12,4 @@ export const GlobalConst ={
         MOBILE_NO:"Max and Min 10 char needed"
     }
 }
+

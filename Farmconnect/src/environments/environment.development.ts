@@ -1,4 +1,4 @@
 export const environment = {
-        API_URL:"https://api.freeprojectapi.com/api/BankLoan/login"
+    API_URL:"https://feestracking.freeprojectapi.com/api/"
 
 };

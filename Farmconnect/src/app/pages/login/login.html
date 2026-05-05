@@ -57,7 +57,14 @@
             <label class="form-label">Email Address</label>
             <div class="input-icon-wrap">
               <i class="bi bi-envelope"></i>
-              <input type="email" class="form-control" placeholder="you@example.com" required />
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                [(ngModel)]="loginObj.email"
+                placeholder="you@example.com"
+                required
+              />
             </div>
           </div>
 
@@ -69,6 +76,8 @@
                 type="password"
                 class="form-control"
                 id="login-pw"
+                name="password"
+                [(ngModel)]="loginObj.password"
                 placeholder="Enter your password"
                 style="padding-right: 2.8rem"
                 required
@@ -84,7 +93,7 @@
             <label for="remember">Remember me</label>
           </div>
 
-          <button type="submit" class="btn-submit">
+          <button (click)="onLogin()" type="submit" class="btn-submit">
             <i class="bi bi-arrow-right me-2"></i>Log In
           </button>
         </form>
