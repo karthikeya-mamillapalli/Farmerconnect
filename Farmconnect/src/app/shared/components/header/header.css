@@ -1,0 +1,39 @@
+/* User info in navbar */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+.user-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.btn-logout {
+  border: 2px solid var(--green);
+  color: var(--green);
+  background: transparent;
+  border-radius: 50px;
+  padding: 0.45rem 1.2rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-logout:hover {
+  background: var(--green);
+  color: #fff;
+}
